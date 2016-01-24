@@ -22,18 +22,16 @@ public class Course extends Happening
   @ManyToOne(fetch = FetchType.EAGER)
   private TeacherUser lecturer_;
 
-  private int reg_limit_;
   private boolean antendees_;
 
 // DEFAULT CONSTRUCTOR
   @SuppressWarnings("unused")
   public Course(){}
 
-  public Course(String name, String description, int reg_limit, boolean antendees)
+  public Course(String name, String description, boolean antendees)
   {
     this.name_ = name;
     this.description_ = description;
-    this.reg_limit_ = reg_limit;
     this.antendees_ = antendees;
     this.registraded_user_ = new HashSet<StdUser>(0);
   }
@@ -67,19 +65,6 @@ public class Course extends Happening
   public final void setRegistradedUser(Set<StdUser> registraded_user)
   {
     this.registraded_user_ = registraded_user;
-  }
-//------------------------------------------------------------------------------
-
-
-// GETTER SETTER REG_LIMIT_
-//------------------------------------------------------------------------------
-  public final int getRegLimit()
-  {
-    return reg_limit_;
-  }
-  public final void setRegLimit(int reg_limit)
-  {
-    this.reg_limit_ = reg_limit;
   }
 //------------------------------------------------------------------------------
 
