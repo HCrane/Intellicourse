@@ -101,9 +101,6 @@ public class FCreateTime extends JFrame
             end_time = new Date(year,month,day,end_time_hours,end_time_minutes);;
 
 
-            System.out.println(start_time);
-            System.out.println(end_time);
-
           }
           catch(ParseException ex)
           {

@@ -362,14 +362,19 @@ public class FMainMenue extends JFrame
       courses_student_subsscribed_to = new ArrayList<>(admin_.getCourses());
     }
     jtm_upcoming_events_.setRowCount(0);
-
+    Date now = new Date();
     for (Course course : courses_student_subsscribed_to) {
       for (Time time : course.getTimes()) {
-        UpcomingEventsElement n = new UpcomingEventsElement();
-        n.setName(course.getName());
-        n.setStartTime(time.getStartTime());
-        n.setEndTime(time.getEndTime());
-        upcomming_events.add(n);
+        if(time.getEndTime().after(now))
+        {
+          UpcomingEventsElement n = new UpcomingEventsElement();
+          n.setName(course.getName());
+          n.setStartTime(time.getStartTime());
+          n.setEndTime(time.getEndTime());
+          upcomming_events.add(n);
+
+        }
+
       }
     }
     Collections.sort(upcomming_events);
