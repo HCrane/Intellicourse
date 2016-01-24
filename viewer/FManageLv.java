@@ -93,13 +93,13 @@ public class FManageLv extends JFrame {
           Course unsubscribe_from = courses_student_subsscribed_to_.get(index);
           boolean success = false;
           if (student_ !=null) {
-            success = RegisterForCourseHandler.unregisterStudent(student_,unsubscribe_from) == null;
+            success = SubscribeHandler.unregisterOfCourse(student_,unsubscribe_from)==null;
           }
           else if (teacher_ != null) {
-            success = RegisterForCourseHandler.unregisterTeacher(teacher_,unsubscribe_from) == null;
+            success = SubscribeHandler.unregisterOfCourse(teacher_,unsubscribe_from)==null;
           }
           else{
-            success = RegisterForCourseHandler.unregisterAdmin(admin_,unsubscribe_from) == null;
+            success = SubscribeHandler.unregisterOfCourse(admin_,unsubscribe_from)==null;
           }
 
           if(success)
@@ -214,7 +214,7 @@ public class FManageLv extends JFrame {
     }
     else if (teacher_ != null) {
       courses_student_subsscribed_to_ = new ArrayList<>(teacher_.getCourses());
-      for (Course course : GetCourse.getCourseAll()) {
+      for (Course course : GetObjects.getAllCourses()) {
           if (course.getLecturer().getID() == teacher_.getID()) {
             courses_student_subsscribed_to_.add(course);
           }
@@ -222,7 +222,7 @@ public class FManageLv extends JFrame {
     }
     else{
       courses_student_subsscribed_to_ = new ArrayList<>(admin_.getCourses());
-      for (Course course : GetCourse.getCourseAll()) {
+      for (Course course : GetObjects.getAllCourses()) {
           if (course.getLecturer().getID() == admin_.getID()) {
             courses_student_subsscribed_to_.add(course);
           }

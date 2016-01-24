@@ -21,9 +21,11 @@ public class FCreatePlace extends JFrame
   private JPanel content_panel_;
 
 //LOGIN PANEL
+  private JLabel lb_l_room_name_;
   private JLabel lb_l_room_nr_;
   private JLabel lb_l_capacity_;
 
+  private JTextField text_l_name_;
   private JFormattedTextField text_l_room_nr_;
   private JFormattedTextField text_l_capacity_;
 
@@ -63,7 +65,7 @@ public class FCreatePlace extends JFrame
 
             }
 
-            ret_val = RegisterHandler.registerPlace(roomnumber,capacity);
+            ret_val = RegisterHandler.registerPlace(text_l_name_.getText(),capacity,roomnumber);
 
             if (ret_val != null)
             {
@@ -100,17 +102,35 @@ public class FCreatePlace extends JFrame
     content_panel_ = new JPanel(new GridBagLayout());
     GridBagConstraints constraints_ = new GridBagConstraints();
 
-    lb_l_room_nr_ = new JLabel("Room Number:");
+
+
+
+    lb_l_room_name_ = new JLabel("Room Name:");
     constraints_.fill = GridBagConstraints.HORIZONTAL;
     constraints_.gridx = 0;
     constraints_.gridy = 0;
+    content_panel_.add(lb_l_room_name_, constraints_);
+
+
+    lb_l_room_nr_ = new JLabel("Room Number:");
+    constraints_.fill = GridBagConstraints.HORIZONTAL;
+    constraints_.gridx = 0;
+    constraints_.gridy = 1;
     content_panel_.add(lb_l_room_nr_, constraints_);
 
     lb_l_capacity_ = new JLabel("Capacity:");
     constraints_.fill = GridBagConstraints.HORIZONTAL;
     constraints_.gridx = 0;
-    constraints_.gridy = 1;
+    constraints_.gridy = 2;
     content_panel_.add(lb_l_capacity_, constraints_);
+
+
+    text_l_name_ = new JTextField(16);
+    constraints_.fill = GridBagConstraints.HORIZONTAL;
+    constraints_.gridx = 1;
+    constraints_.gridy = 0;
+    constraints_.gridwidth = 3;
+    content_panel_.add(text_l_name_, constraints_);
 
 
     NumberFormat format = NumberFormat.getInstance();
@@ -127,7 +147,7 @@ public class FCreatePlace extends JFrame
     text_l_room_nr_.setColumns(15);
     constraints_.fill = GridBagConstraints.HORIZONTAL;
     constraints_.gridx = 1;
-    constraints_.gridy = 0;
+    constraints_.gridy = 1;
     content_panel_.add(text_l_room_nr_, constraints_);
 
 
@@ -135,7 +155,7 @@ public class FCreatePlace extends JFrame
     text_l_capacity_.setColumns(15);
     constraints_.fill = GridBagConstraints.HORIZONTAL;
     constraints_.gridx = 1;
-    constraints_.gridy = 1;
+    constraints_.gridy = 2;
     content_panel_.add(text_l_capacity_, constraints_);
 
 

@@ -87,7 +87,7 @@ public class FAddCourseCV extends JFrame
         }
 
         if (student_ !=null) {
-          if(RegisterForCourseHandler.registerStudent(student_,courses_.get(selectedRowIndex)) == null)
+          if(SubscribeHandler.regiserForCourse(student_,courses_.get(selectedRowIndex))==null)
           {
             StringBuilder stringBuilder = new StringBuilder();
 
@@ -99,7 +99,7 @@ public class FAddCourseCV extends JFrame
           }
         }
         else if (teacher_ != null) {
-          if(RegisterForCourseHandler.registerTeacher(teacher_,courses_.get(selectedRowIndex)) == null)
+          if(SubscribeHandler.regiserForCourse(teacher_,courses_.get(selectedRowIndex))==null)
           {
             StringBuilder stringBuilder = new StringBuilder();
 
@@ -111,7 +111,7 @@ public class FAddCourseCV extends JFrame
           }
         }
         else{
-          if(RegisterForCourseHandler.registerAdmin(admin_,courses_.get(selectedRowIndex)) == null)
+          if(SubscribeHandler.regiserForCourse(admin_,courses_.get(selectedRowIndex))==null)
           {
             StringBuilder stringBuilder = new StringBuilder();
 
