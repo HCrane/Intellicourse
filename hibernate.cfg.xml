@@ -1,0 +1,40 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <!-- Database connection settings -->
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="connection.url">jdbc:mysql://localhost:3306/IntelliCourse</property>
+    <property name="connection.username">icUser</property>
+    <property name="connection.password">usFPfTs1CP!00AD</property>
+    <property name="connection.autoReconnect">true</property>
+    <property name="connection.autoReconnectForPools">true</property>
+    <property name="connection.failOverReadOnly">false</property>
+
+    <!-- JDBC connection pool (use the built-in) -->
+    <property name="connection.pool_size">0</property>
+
+    <!-- SQL dialect -->
+    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+    <!-- <property name="dialect">org.hibernate.dialect.MySQLMyISAMDialect</property> -->
+
+    <!-- Enable Hibernate's automatic session context management -->
+    <property name="current_session_context_class">thread</property>
+
+    <!-- Disable the second-level cache -->
+    <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+    <!-- Echo all executed SQL to stdout -->
+    <property name="show_sql">false</property>
+
+    <mapping class="classes.StdUser" />
+    <mapping class="classes.StudentUser" />
+    <mapping class="classes.Happening" />
+    <mapping class="classes.Course" />
+    <mapping class="classes.TeacherUser" />
+
+
+
+</session-factory>
+</hibernate-configuration>
