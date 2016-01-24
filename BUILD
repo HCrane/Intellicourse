@@ -2,7 +2,7 @@ java_binary(
   name = "createdb",
   srcs = ["DatabaseConstruction.java"],
   main_class = "DatabaseConstruction",
-  deps = [":hibernate_lib", ":classes",],
+  deps = [":hibernate_lib", ":classes",":datepicker_lib"],
   data = [
       "hibernate.cfg.xml"
  	 ],
@@ -28,9 +28,16 @@ java_library(
 java_library(
   name = "classes",
   srcs = glob(["classes/*.java"]),
-  deps = [":hibernate_lib",
+  deps = [":hibernate_lib","datepicker_lib"
     ],
   )
+
+java_import(
+  name = "datepicker_lib",
+  jars = [
+    "libs/jdatepicker-1.3.4.jar"
+    ],
+)
 
 java_import(
   name = "hibernate_lib",
