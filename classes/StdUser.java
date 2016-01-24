@@ -38,6 +38,7 @@ public class StdUser
   protected String last_name_;
   protected String user_name_; //name_ is always the USERNAME
   protected String password_;
+  protected Date date_of_birth_;
   protected String address_;
   protected String email_;
   protected String phone_;
@@ -131,7 +132,6 @@ public class StdUser
     }
 //------------------------------------------------------------------------------
 
-
 // GETTER SETTER PASSWORD_
 //------------------------------------------------------------------------------
     public final String getPassword()
@@ -141,6 +141,18 @@ public class StdUser
     public final void setPassword(String password)
     {
       this.password_ = password;
+    }
+//------------------------------------------------------------------------------
+
+// GETTER SETTER DATE_OF_BIRTH_
+//------------------------------------------------------------------------------
+    public final Date getDateOfBirth()
+    {
+      return date_of_birth_;
+    }
+    public final void setDateOfBirth(Date dof)
+    {
+      this.date_of_birth_ = dof;
     }
 //------------------------------------------------------------------------------
 

@@ -30,6 +30,7 @@ public class DatabaseConstruction {
 		configuration.addAnnotatedClass(Exam.class);
 		configuration.addAnnotatedClass(Event.class);
 		configuration.addAnnotatedClass(Place.class);
+		configuration.addAnnotatedClass(Time.class);
 
 		configuration.configure(configFile);
 
