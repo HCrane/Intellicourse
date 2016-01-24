@@ -22,6 +22,7 @@ public class GetObjects
     }
     catch (HibernateException e)
     {
+      System.out.println("GetObjects Exception: " + e);
       return null;
     }
   }
@@ -34,6 +35,7 @@ public class GetObjects
     }
     catch (HibernateException e)
     {
+      System.out.println("GetObjects Exception: " + e);
       return null;
     }
   }
@@ -49,6 +51,7 @@ public class GetObjects
     }
     catch (HibernateException e)
     {
+      System.out.println("GetObjects Exception: " + e);
       return null;
     }
   }
@@ -61,6 +64,7 @@ public class GetObjects
     }
     catch (HibernateException e)
     {
+      System.out.println("GetObjects Exception: " + e);
       return null;
     }
   }
@@ -76,6 +80,7 @@ public class GetObjects
     }
     catch (HibernateException e)
     {
+      System.out.println("GetObjects Exception: " + e);
       return null;
     }
   }
@@ -88,6 +93,7 @@ public class GetObjects
     }
     catch (HibernateException e)
     {
+      System.out.println("GetObjects Exception: " + e);
       return null;
     }
   }
@@ -103,6 +109,7 @@ public class GetObjects
     }
     catch (HibernateException e)
     {
+      System.out.println("GetObjects Exception: " + e);
       return null;
     }
   }
@@ -131,6 +138,7 @@ public class GetObjects
     }
     catch (HibernateException e)
     {
+      System.out.println("GetObjects Exception: " + e);
       return null;
     }
   }
@@ -143,6 +151,7 @@ public class GetObjects
     }
     catch (HibernateException e)
     {
+      System.out.println("GetObjects Exception: " + e);
       return null;
     }
   }

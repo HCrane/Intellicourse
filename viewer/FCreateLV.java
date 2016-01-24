@@ -146,7 +146,7 @@ public class FCreateLV extends JFrame
     content_panel_.add(text_l_name_, constraints_);
 
 
-    teachers_ = GetUser.getAllTeacher();
+    teachers_ = GetObjects.getAllTeachers();
     cb_teacher = new JComboBox<TeacherUser>();
     for (TeacherUser teacher : teachers_) {
       cb_teacher.addItem(teacher);

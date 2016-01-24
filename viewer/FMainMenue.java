@@ -221,11 +221,20 @@ public class FMainMenue extends JFrame
 
     btn_manage_lv_.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent logout)
+      public void actionPerformed(ActionEvent manage_events)
       {
-        FManageEvent f_manage_event_ = new FManageEvent((
-        admin_ != null)?admin_:((teacher_!= null)?teacher_:student_));
-        f_manage_event_.setVisible(true);
+        if (admin != null) {
+          FManageEvent f_manage_event_ = new FManageEvent(admin);
+          f_manage_event_.setVisible(true);
+        }else if(teacher != null)
+        {
+          FManageEvent f_manage_event_ = new FManageEvent(admin);
+          f_manage_event_.setVisible(true);
+        }else if(student != null)
+        {
+          FManageEvent f_manage_event_ = new FManageEvent(student);
+          f_manage_event_.setVisible(true);
+        }
       }
 
     });

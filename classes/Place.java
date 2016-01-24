@@ -76,7 +76,7 @@ public class Place
 
 // GETTER SETTER ROOMCP
 //------------------------------------------------------------------------------
-    public final int getRoomCp()
+    public final int getCapacity()
     {
       return roomcp_;
     }

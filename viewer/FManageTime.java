@@ -75,7 +75,6 @@ public class FManageTime extends JFrame{
     jtm_current_lv_times_.addColumn("Date");
     jtm_current_lv_times_.addColumn("Start-Time");
     jtm_current_lv_times_.addColumn("End-Time");
-    jtm_current_lv_times_.addColumn("Place");
     jt_timer_ = new Timer(0, new ActionListener() {
 
        @Override
@@ -119,7 +118,6 @@ public class FManageTime extends JFrame{
         data[0] = dateF.format(time.getStartTime());
         data[1] = timeF.format(time.getStartTime());
         data[2] = timeF.format(time.getEndTime());
-        data[3] = String.valueOf(time.getPlace().getRoomNr());
         jtm_current_lv_times_.addRow(data);
     }
 

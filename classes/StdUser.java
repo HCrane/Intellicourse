@@ -97,7 +97,7 @@ public class StdUser
 
 // GETTER SETTER NAME_
 //------------------------------------------------------------------------------
-    public final String getUserName()
+    public final String getName()
     {
       return user_name_;
     }
@@ -191,4 +191,9 @@ public class StdUser
       this.phone_ = phone;
     }
 //------------------------------------------------------------------------------
+
+    public Set<Course> getCourses()
+    {
+        return registraded_courses_;
+    }
 }

@@ -12,6 +12,7 @@ import javax.swing.event.ListSelectionListener;
 
 import controller.*;
 import classes.*;
+
 import java.util.Set;
 import java.util.List;
 
@@ -288,9 +289,9 @@ public class FManageUser extends JFrame {
   }
   private void fillTable()
   {
-    students_ = GetUser.getAllStudent();
-    teachers_ = GetUser.getAllTeacher();
-    admins_   = GetUser.getAllAdmin();
+    students_ = GetObjects.getAllStudents();
+    teachers_ = GetObjects.getAllTeachers();
+    admins_   = GetObjects.getAllAdmins();
     jtm_search_output_users_.setRowCount(0);
     int index = 0;
 

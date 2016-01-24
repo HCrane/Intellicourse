@@ -157,7 +157,7 @@ public class FAddCourseCV extends JFrame
       "Name",
     };
 
-    courses_ = GetCourse.getCourseAll();
+    courses_ = GetObjects.getAllCourses();
 
     Object[][] data_ = new Object[courses_.size()][2];
 

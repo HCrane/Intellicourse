@@ -196,7 +196,7 @@ public class FCreateTime extends JFrame
     PromptSupport.setPrompt("hh:mm", text_l_endtime_);
     content_panel_.add(text_l_endtime_, constraints_);
 
-    places_ = GetPlace.getPlacesAll();
+    places_ = GetObjects.getAllPlaces();
     cb_place_ = new JComboBox<Place>();
     for (Place place : places_) {
       cb_place_.addItem(place);

@@ -54,7 +54,7 @@ public class FManagePlace extends JFrame {
 		btn_del_place_.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
         int index = jt_current_places_.getSelectedRow();
-        List<Place> places_in_system = GetPlace.getPlacesAll();
+        List<Place> places_in_system = GetObjects.getAllPlaces();
         if (index < places_in_system.size() && index >= 0) {
           Place place_to_delete = places_in_system.get(index);
           //place_to_delete.deleteFromDB();
@@ -118,10 +118,10 @@ public class FManagePlace extends JFrame {
   {
 
 		int index = jt_current_places_.getSelectedRow();
-    List<Place> places_in_system = GetPlace.getPlacesAll();
+    List<Place> places_in_system = GetObjects.getAllPlaces();
     jtm_current_places_.setRowCount(0);
     for (Place place : places_in_system) {
-        String[] data = new String[3];
+        String[] data = new String[2];
         data[0] = String.valueOf(place.getRoomNr());
         data[1] = String.valueOf(place.getCapacity());
         jtm_current_places_.addRow(data);
