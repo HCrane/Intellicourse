@@ -22,6 +22,7 @@ java_library(
   name = "controller",
   srcs = glob(["controller/*.java"]),
   deps = [":classes",
+          ":hibernate_lib",
     ],
   )
 
