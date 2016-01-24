@@ -20,30 +20,27 @@ import javax.persistence.CascadeType;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public abstract class Happening
+public class Place
 {
   @Id
   @GeneratedValue(strategy=GenerationType.TABLE)
-  @Column(name = "HAPPENING_ID", unique = true, nullable = false)
-  protected int id_;
+  @Column(name = "PLACE_ID", unique = true, nullable = false)
+  private int id_;
 
-  @OneToOne
-  protected Place room_;
-
-  protected String name_;
-  protected String description_;
+  private String name_;
+  private int roomcp_;
+  private int roomnr_;
 
   // DEFAULT CONSTRUCTOR
   @SuppressWarnings("unused")
-  public Happening(){}
+  public Place(){}
 
-  // GETTER ID_
-  //------------------------------------------------------------------------------
-    public final int getID()
-    {
-      return id_;
-    }
-  //------------------------------------------------------------------------------
+  public Place(String name, int roomcp, int roomnr)
+  {
+    this.name_ = name;
+    this.roomcp_ = roomcp;
+    this.roomnr_ = roomnr;
+  }
 
   // GETTER SETTER NAME_
   //------------------------------------------------------------------------------
@@ -56,28 +53,26 @@ public abstract class Happening
       this.name_ = name;
     }
   //------------------------------------------------------------------------------
-
-  // GETTER SETTER DESCRIPTION_
+  // GETTER SETTER ROOMNR
   //------------------------------------------------------------------------------
-    public final String getDescription()
+    public final int getRoomNr()
     {
-      return description_;
+      return roomnr_;
     }
-    public final void setDescription(String description)
+    public final void setRoomNr(int roomnr)
     {
-      this.description_ = description;
+      this.roomnr_ = roomnr;
     }
   //------------------------------------------------------------------------------
-
-  // GETTER SETTER ROOM
+  // GETTER SETTER ROOMCP
   //------------------------------------------------------------------------------
-    public final Place getRoom()
+    public final int getRoomCp()
     {
-      return room_;
+      return roomcp_;
     }
-    public final void setRoom(Place room)
+    public final void setRoomCp(int roomcp)
     {
-      this.room_ = room;
+      this.roomcp_ = roomcp;
     }
   //------------------------------------------------------------------------------
 }

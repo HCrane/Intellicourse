@@ -25,6 +25,7 @@ public class DatabaseConstruction {
 		configuration.addAnnotatedClass(StudentUser.class);
 		configuration.addAnnotatedClass(Happening.class);
 		configuration.addAnnotatedClass(Course.class);
+		configuration.addAnnotatedClass(Place.class);
 		configuration.addAnnotatedClass(TeacherUser.class);
 
 		configuration.configure(configFile);

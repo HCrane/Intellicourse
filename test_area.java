@@ -14,6 +14,8 @@ public class test_area
     HibernateSupport.init();
     createUsers();
     createCourses();
+    createPlace();
+    addPlaceToCourse();
     setLecturerOfCourse();
     subscribeForCourse();
     deleteCourse();
@@ -82,6 +84,85 @@ public class test_area
     catch(HibernateException e)
     {
       System.out.println("Can't create the Courses!");
+      System.out.println(e);
+      return;
+    }
+
+  }
+
+  public static void createPlace()
+  {
+    String name1 = "HSi13";
+    int room_cp1 = 300;
+    int room_nr1 = 152;
+
+    Place room1 = new Place(name1, room_cp1, room_nr1);
+
+    String name2 = "HSi23";
+    int room_cp2 = 300;
+    int room_nr2 = 252;
+
+    Place room2 = new Place(name2, room_cp2, room_nr2);
+
+    try
+    {
+      HibernateSupport.beginTransaction();
+      HibernateSupport.commit(room1);
+      HibernateSupport.commit(room2);
+      HibernateSupport.commitTransaction();
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't create the Room!");
+      System.out.println(e);
+      return;
+    }
+  }
+
+  public static void addPlaceToCourse()
+  {
+    Course course1;
+    Course course2;
+    Place room1;
+    Place room2;
+    try
+    {
+      List<Criterion> crit1 = new ArrayList<Criterion>();
+      crit1.add(Restrictions.eq("name_", "OOAD"));
+      course1 = HibernateSupport.readOneObject(Course.class, crit1);
+
+      List<Criterion> crit2 = new ArrayList<Criterion>();
+      crit2.add(Restrictions.eq("roomnr_", 152));
+      room1 = HibernateSupport.readOneObject(Place.class, crit2);
+
+      List<Criterion> crit3 = new ArrayList<Criterion>();
+      crit3.add(Restrictions.eq("name_", "LC"));
+      course2 = HibernateSupport.readOneObject(Course.class, crit3);
+
+      List<Criterion> crit4 = new ArrayList<Criterion>();
+      crit4.add(Restrictions.eq("roomnr_", 252));
+      room2 = HibernateSupport.readOneObject(Place.class, crit4);
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't get the Data!");
+      System.out.println(e);
+      return;
+    }
+
+    course1.setRoom(room1);
+    course2.setRoom(room2);
+
+    try
+    {
+      HibernateSupport.beginTransaction();
+      HibernateSupport.commit(course1);
+      HibernateSupport.commit(course2);
+      HibernateSupport.commitTransaction();
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't set room of the Course!");
       System.out.println(e);
       return;
     }
@@ -221,6 +302,7 @@ public class test_area
     }
     course.setLecturer(null);
     course.setRegistradedUser(new HashSet<StdUser>(0));
+    course.setRoom(null);
 
     try
     {
@@ -237,4 +319,5 @@ public class test_area
     }
 
   }
+
 }
