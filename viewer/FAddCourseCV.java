@@ -43,12 +43,11 @@ public class FAddCourseCV extends JFrame
     content_panel_ = new JPanel(new GridBagLayout());
     GridBagConstraints constraints_ = new GridBagConstraints();
 
-
-
     btn_add_lv_cv_ = new JButton("Add to CV");
     constraints_.fill = GridBagConstraints.HORIZONTAL;
     constraints_.gridx = 1;
     constraints_.gridy = 0;
+    constraints_.insets = new Insets(0, 0, 0, 10);
     content_panel_.add(btn_add_lv_cv_, constraints_);
 
     btn_add_lv_cv_.addActionListener(new ActionListener()
@@ -141,6 +140,7 @@ public class FAddCourseCV extends JFrame
     constraints_.fill = GridBagConstraints.HORIZONTAL;
     constraints_.gridx = 0;
     constraints_.gridy = 0;
+    constraints_.insets = new Insets(0, 0, 0, 10);
     content_panel_.add(btn_back_, constraints_);
 
     btn_back_.addActionListener(new ActionListener()
