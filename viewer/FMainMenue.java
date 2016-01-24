@@ -223,16 +223,16 @@ public class FMainMenue extends JFrame
     {
       public void actionPerformed(ActionEvent manage_events)
       {
-        if (admin != null) {
-          FManageEvent f_manage_event_ = new FManageEvent(admin);
+        if (admin_ != null) {
+          FManageEvent f_manage_event_ = new FManageEvent(admin_);
           f_manage_event_.setVisible(true);
-        }else if(teacher != null)
+        }else if(teacher_ != null)
         {
-          FManageEvent f_manage_event_ = new FManageEvent(admin);
+          FManageEvent f_manage_event_ = new FManageEvent(admin_);
           f_manage_event_.setVisible(true);
-        }else if(student != null)
+        }else if(student_ != null)
         {
-          FManageEvent f_manage_event_ = new FManageEvent(student);
+          FManageEvent f_manage_event_ = new FManageEvent(student_);
           f_manage_event_.setVisible(true);
         }
       }

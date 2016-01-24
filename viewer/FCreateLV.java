@@ -26,13 +26,19 @@ public class FCreateLV extends JFrame
 
   private JLabel lb_l_name_;
   private JLabel lb_l_teacher_;
-  private JLabel lb_l_max_students_;
+  private JLabel lb_l_place_;
   private JLabel lb_l_description_;
 
   private JTextField text_l_name_;
   private JFormattedTextField text_l_max_students_;
+
   private JComboBox<TeacherUser> cb_teacher;
   private List<TeacherUser> teachers_;
+
+  private JComboBox<Place> cb_place;
+  private List<Place> places_;
+
+
   private JTextField text_l_description_;
 
   private JRadioButton jr_attendees_yes_;
@@ -78,7 +84,7 @@ public class FCreateLV extends JFrame
 
 
             //c style cast here because we know that the object can only be a TeacherUser
-            ret_val = RegisterHandler.registerCourse(text_l_name_.getText(),text_l_description_.getText(),max_students, (TeacherUser)cb_teacher.getSelectedItem(),attendees);
+            ret_val = RegisterHandler.registerCourse(text_l_name_.getText(),text_l_description_.getText(),attendees, (TeacherUser)cb_teacher.getSelectedItem(),(Place)cb_place.getSelectedItem());
 
             if (ret_val != null)
             {
@@ -120,11 +126,11 @@ public class FCreateLV extends JFrame
     constraints_.gridy = 1;
     content_panel_.add(lb_l_teacher_, constraints_);
 
-    lb_l_max_students_ = new JLabel("Max Students:");
+    lb_l_place_ = new JLabel("Place:");
     constraints_.fill = GridBagConstraints.HORIZONTAL;
     constraints_.gridx = 0;
     constraints_.gridy = 2;
-    content_panel_.add(lb_l_max_students_, constraints_);
+    content_panel_.add(lb_l_place_, constraints_);
 
     lb_l_description_ = new JLabel("Description:");
     constraints_.fill = GridBagConstraints.HORIZONTAL;
@@ -160,23 +166,28 @@ public class FCreateLV extends JFrame
     content_panel_.add(cb_teacher, constraints_);
 
 
+    places_ = GetObjects.getAllPlaces();
+    cb_place = new JComboBox<Place>();
+    for (Place place : places_) {
+      cb_place.addItem(place);
+    }
 
-    NumberFormat format = NumberFormat.getInstance();
-    format.setGroupingUsed(false);
-    NumberFormatter formatter = new NumberFormatter(format);
-    formatter.setValueClass(Integer.class);
-    formatter.setMinimum(0);
-    formatter.setMaximum(Integer.MAX_VALUE);
-
-    formatter.setCommitsOnValidEdit(true);
+    constraints_.fill = GridBagConstraints.HORIZONTAL;
+    constraints_.gridx = 1;
+    constraints_.gridy = 2;
+    constraints_.gridwidth = 3;
+    content_panel_.add(cb_place, constraints_);
 
 
+
+
+    /*
     text_l_max_students_ = new JFormattedTextField(formatter);
     constraints_.fill = GridBagConstraints.HORIZONTAL;
     constraints_.gridx = 1;
     constraints_.gridy = 2;
     constraints_.gridwidth = 3;
-    content_panel_.add(text_l_max_students_, constraints_);
+    content_panel_.add(text_l_max_students_, constraints_);*/
 
     text_l_description_ = new JTextField(16);
     constraints_.fill = GridBagConstraints.HORIZONTAL;
