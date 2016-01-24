@@ -13,6 +13,7 @@ public class test_area
   {
     HibernateSupport.init();
     createUsers();
+    createEvent();
     createCourses();
     createPlace();
     addPlaceToCourse();
@@ -80,6 +81,33 @@ public class test_area
       System.out.println(e);
       return;
     }
+  }
+
+  public static void createEvent()
+  {
+    String nameE1 = "Feier 1";
+    String descE1 = "Abschlussfeier1";
+
+    String nameE2 = "Feier 2";
+    String descE2 = "Abschlussfeier2";
+
+    Event event1 = new Event(nameE1, descE1);
+    Event event2 = new Event(nameE2, descE2);
+
+    try
+    {
+      HibernateSupport.beginTransaction();
+      HibernateSupport.commit(event1);
+      HibernateSupport.commit(event2);
+      HibernateSupport.commitTransaction();
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't create the Events!");
+      System.out.println(e);
+      return;
+    }
+
   }
 
   public static void createCourses()

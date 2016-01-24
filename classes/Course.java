@@ -25,7 +25,7 @@ public class Course extends Happening
   private int reg_limit_;
   private boolean antendees_;
 
-  // DEFAULT CONSTRUCTOR
+// DEFAULT CONSTRUCTOR
   @SuppressWarnings("unused")
   public Course(){}
 

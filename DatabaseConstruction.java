@@ -28,6 +28,7 @@ public class DatabaseConstruction {
 		configuration.addAnnotatedClass(Happening.class);
 		configuration.addAnnotatedClass(Course.class);
 		configuration.addAnnotatedClass(Exam.class);
+		configuration.addAnnotatedClass(Event.class);
 		configuration.addAnnotatedClass(Place.class);
 
 		configuration.configure(configFile);

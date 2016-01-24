@@ -24,7 +24,7 @@ public class Exam extends Happening
 
   private int reg_limit_;
 
-  // DEFAULT CONSTRUCTOR
+// DEFAULT CONSTRUCTOR
   @SuppressWarnings("unused")
   public Exam(){}
 

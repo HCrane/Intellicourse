@@ -21,7 +21,7 @@ public class AdminUser extends StdUser
   @OneToMany(fetch = FetchType.EAGER, mappedBy="lecturerExam_")
   private Set<Exam> teaching_exams_;
 
-  //DEFAULT CONSTRUCTOR
+//DEFAULT CONSTRUCTOR
   @SuppressWarnings("unused")
   public AdminUser(){}
 

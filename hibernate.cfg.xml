@@ -35,9 +35,8 @@
     <mapping class="classes.Happening" />
     <mapping class="classes.Course" />
     <mapping class="classes.Exam" />
+    <mapping class="classes.Event" />
     <mapping class="classes.Place" />
-
-
 
 </session-factory>
 </hibernate-configuration>
