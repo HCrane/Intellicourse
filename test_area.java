@@ -26,6 +26,7 @@ public class test_area
     // subscribeForExam();
     // deleteExam();
     checkRegisterUser();
+    loginchecker();
     HibernateSupport.deinit();
     System.exit(0);
   }
@@ -42,6 +43,13 @@ public class test_area
     String phone = "+36648607978";
 
     System.out.println(RegisterHandler.registerUser(user_name, first_name, last_name, passwd, passwd, dob, addr, mail, phone));
+  }
+
+  public static void loginchecker()
+  {
+    StudentUser student = LoginHandler.studentLogin("coffee1", "123");
+    TeacherUser teacher = LoginHandler.teacherLogin("coffee2", "123");
+    AdminUser admin = LoginHandler.adminLogin("coffee3", "123");
   }
 
   // public static void createUsers()
