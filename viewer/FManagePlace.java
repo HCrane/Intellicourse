@@ -49,7 +49,7 @@ public class FManagePlace extends JFrame {
 		constraints_.gridx = 2;
 		constraints_.gridy = 2;
 		constraints_.insets = new Insets(0, 0, 10, 10);
-		content_panel_.add(btn_del_place_, constraints_);
+		//content_panel_.add(btn_del_place_, constraints_);
 
 		btn_del_place_.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

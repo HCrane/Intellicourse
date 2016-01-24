@@ -87,6 +87,11 @@ public class StdUser
     return false;
   }
 
+  @Override
+  public String toString() {
+    return user_name_;
+  }
+
 // GETTER ID_
 //------------------------------------------------------------------------------
     public final int getID()

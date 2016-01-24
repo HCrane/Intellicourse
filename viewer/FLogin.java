@@ -59,7 +59,7 @@ public class FLogin extends JFrame
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setSize(450, 300);
     setTitle("Intellicourse - Login");
-
+    HibernateSupport.init();
     createLoginPanel();
     createRegisterPanel();
     add(content_panel_);

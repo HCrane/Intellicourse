@@ -42,6 +42,11 @@ public class Place
     this.roomnr_ = roomnr;
   }
 
+  @Override
+  public String toString() {
+    return name_;
+  }
+
 // GETTER ID_
 //------------------------------------------------------------------------------
     public final int getID()

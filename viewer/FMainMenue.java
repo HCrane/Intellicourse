@@ -170,7 +170,9 @@ public class FMainMenue extends JFrame
       public void actionPerformed(ActionEvent logout)
       {
        setVisible(false);
+      HibernateSupport.deinit();
        FLogin f_logout_ = new FLogin();
+
        f_logout_.setVisible(true);
        dispose();
      }

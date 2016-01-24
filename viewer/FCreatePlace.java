@@ -36,7 +36,7 @@ public class FCreatePlace extends JFrame
   public FCreatePlace()
   {
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    setSize(350, 150);
+    setSize(350, 200);
     setTitle("Intellicourse - Create Room");
 
     createPanel();
@@ -163,7 +163,7 @@ public class FCreatePlace extends JFrame
     btn_confirm_creation_ = new JButton("Create Place");
     constraints_.fill = GridBagConstraints.HORIZONTAL;
     constraints_.gridx = 0;
-    constraints_.gridy = 2;
+    constraints_.gridy = 3;
     content_panel_.add(btn_confirm_creation_, constraints_);
   }
 

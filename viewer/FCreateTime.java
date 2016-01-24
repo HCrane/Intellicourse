@@ -34,15 +34,12 @@ public class FCreateTime extends JFrame
   private JLabel lb_l_date_;
   private JLabel lb_l_starttime_;
   private JLabel lb_l_endtime_;
-  private JLabel lb_l_place_;
 
   //private JTextField text_l_date_;
   private JDatePicker date_picker_;
   private JTextField text_l_starttime_;
   private JTextField text_l_endtime_;
 
-  private JComboBox<Place> cb_place_;
-  private List<Place> places_;
 
   private JButton btn_confirm_creation_;
   private Happening happening_;
@@ -71,6 +68,10 @@ public class FCreateTime extends JFrame
           Date end_time;
           Date selected_date;
 
+          int year;
+          int month;
+          int day;
+
           int start_time_hours;
           int start_time_minutes;
 
@@ -78,10 +79,17 @@ public class FCreateTime extends JFrame
           int end_time_minutes;
           try
           {
-            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm");
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
             start_time = sdf.parse(text_l_starttime_.getText());
             end_time = sdf.parse(text_l_endtime_.getText());
+
+
             selected_date = ((Calendar)date_picker_.getModel().getValue()).getTime();
+
+            day = selected_date.getDate();
+            month = selected_date.getMonth();
+            year = selected_date.getYear();
+
 
             start_time_hours = start_time.getHours();
             start_time_minutes = start_time.getMinutes();
@@ -89,16 +97,12 @@ public class FCreateTime extends JFrame
             end_time_hours = end_time.getHours();
             end_time_minutes = end_time.getMinutes();
 
-            start_time = selected_date;
-            end_time = selected_date;
+            start_time = new Date(year,month,day,start_time_hours,start_time_minutes);
+            end_time = new Date(year,month,day,end_time_hours,end_time_minutes);;
 
-            start_time.setHours(start_time_hours);
-            start_time.setMinutes(end_time_minutes);
-
-            end_time.setHours(end_time_hours);
-            end_time.setMinutes(end_time_minutes);
 
             System.out.println(start_time);
+            System.out.println(end_time);
 
           }
           catch(ParseException ex)
@@ -106,9 +110,7 @@ public class FCreateTime extends JFrame
             JOptionPane.showMessageDialog(null, "Wrong Date formate");
             return;
           }
-
-
-          String ret_val = RegisterHandler.registerTime(happening_,start_time, end_time,(Place)cb_place_.getSelectedItem());
+          String ret_val = UpdateObjects.updateCourse((Course)happening_, null, null, null, start_time, end_time);
 
           if (ret_val != null)
           {
@@ -155,11 +157,6 @@ public class FCreateTime extends JFrame
     constraints_.gridy = 2;
     content_panel_.add(lb_l_endtime_, constraints_);
 
-    lb_l_place_ = new JLabel("Place:");
-    constraints_.fill = GridBagConstraints.HORIZONTAL;
-    constraints_.gridx = 0;
-    constraints_.gridy = 3;
-    content_panel_.add(lb_l_place_, constraints_);
 
 
 
@@ -196,16 +193,6 @@ public class FCreateTime extends JFrame
     PromptSupport.setPrompt("hh:mm", text_l_endtime_);
     content_panel_.add(text_l_endtime_, constraints_);
 
-    places_ = GetObjects.getAllPlaces();
-    cb_place_ = new JComboBox<Place>();
-    for (Place place : places_) {
-      cb_place_.addItem(place);
-    }
-    constraints_.fill = GridBagConstraints.HORIZONTAL;
-    constraints_.gridx = 1;
-    constraints_.gridy = 3;
-    constraints_.gridwidth = 3;
-    content_panel_.add(cb_place_, constraints_);
 
 
     btn_confirm_creation_ = new JButton("Create Time");

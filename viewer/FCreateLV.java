@@ -66,14 +66,6 @@ public class FCreateLV extends JFrame
           try{
             String ret_val;
 
-            int max_students = Integer.parseInt(text_l_max_students_.getText());
-
-            if(max_students == 0 )
-            {
-              JOptionPane.showMessageDialog(null, "Input invalid!");
-              return;
-
-            }
 
             if (cb_teacher.getSelectedItem() == null) {
               JOptionPane.showMessageDialog(null, "No Teacher selected, so you can't create a LV!");
