@@ -22,17 +22,14 @@ public class Exam extends Happening
   @ManyToOne(fetch = FetchType.EAGER)
   private TeacherUser lecturerExam_;
 
-  private int reg_limit_;
-
 // DEFAULT CONSTRUCTOR
   @SuppressWarnings("unused")
   public Exam(){}
 
-  public Exam(String name, String description, int reg_limit)
+  public Exam(String name, String description)
   {
     this.name_ = name;
     this.description_ = description;
-    this.reg_limit_ = reg_limit;
     this.registraded_user_exam_ = new HashSet<StdUser>(0);
   }
 
@@ -65,19 +62,6 @@ public class Exam extends Happening
   public final void setRegistradedUserExam(Set<StdUser> registraded_user_exam)
   {
     this.registraded_user_exam_ = registraded_user_exam;
-  }
-//------------------------------------------------------------------------------
-
-
-// GETTER SETTER REG_LIMIT_
-//------------------------------------------------------------------------------
-  public final int getRegLimit()
-  {
-    return reg_limit_;
-  }
-  public final void setRegLimit(int reg_limit)
-  {
-    this.reg_limit_ = reg_limit;
   }
 //------------------------------------------------------------------------------
 

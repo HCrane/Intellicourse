@@ -79,6 +79,88 @@ public class RegisterHandler
       return ("Can't save new user to the DB.");
     }
 
-    return("");
+    return null;
+  }
+
+// REGISTER NEW COURSE
+  public static String registerCourse(String name, String desc, boolean atendees, TeacherUser lecturer, Place room)
+  {
+    if(name.isEmpty() || (lecturer == null) || (room == null))
+    {
+      return "Name or Room or Lecturer for the Course is empty";
+    }
+
+    try
+    {
+      List<Criterion> crit = new ArrayList<Criterion>();
+      crit.add(Restrictions.eq("name_", name));
+
+      Course course = HibernateSupport.readOneObject(Course.class, crit);
+      if(course != null)
+        return ("Course already exist.");
+    }
+    catch (HibernateException e)
+    {
+      System.out.println("registerCourse: " + e);
+      return ("Can't load Coure to check if Course already exist.");
+    }
+
+    Course course = new Course(name, desc, atendees);
+    lecturer.addTeachingCourse(course);
+    course.setLecturer(lecturer);
+    course.setRoom(room);
+
+    try
+    {
+      HibernateSupport.beginTransaction();
+      HibernateSupport.commit(course);
+      HibernateSupport.commit(lecturer);
+      HibernateSupport.commitTransaction();
+    }
+    catch (HibernateException e)
+    {
+      System.out.println("registerCourse: " + e);
+      return ("Can't save the Course to the DB.");
+    }
+
+    return null;
+  }
+
+  public static String registerPlace(String name, int roomcp, int roomnr)
+  {
+    if(name.isEmpty() || (roomcp <= 0) || (roomnr <= 0))
+    {
+      return "Name or Capacity or RoomNumber for the Course is empty";
+    }
+
+    try
+    {
+      List<Criterion> crit = new ArrayList<Criterion>();
+      crit.add(Restrictions.eq("roomnr_", roomnr));
+
+      Place room = HibernateSupport.readOneObject(Place.class, crit);
+      if(room != null)
+        return ("Room already exist.");
+    }
+    catch (HibernateException e)
+    {
+      System.out.println("registerPlace: " + e);
+      return ("Can't load Room to check if Room already exist.");
+    }
+
+    Place room = new Place(name, roomcp, roomnr);
+
+    try
+    {
+      HibernateSupport.beginTransaction();
+      HibernateSupport.commit(room);
+      HibernateSupport.commitTransaction();
+    }
+    catch (HibernateException e)
+    {
+      System.out.println("registerPlace: " + e);
+      return ("Can't save the Place to the DB.");
+    }
+    return null;
   }
 }

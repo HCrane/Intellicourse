@@ -25,8 +25,9 @@ public class test_area
     // setLecturerOfExam();
     // subscribeForExam();
     // deleteExam();
-    checkRegisterUser();
-    loginchecker();
+    //checkRegisterUser();
+    // loginchecker();
+    checkRegisterCourse();
     HibernateSupport.deinit();
     System.exit(0);
   }
@@ -50,6 +51,39 @@ public class test_area
     StudentUser student = LoginHandler.studentLogin("coffee1", "123");
     TeacherUser teacher = LoginHandler.teacherLogin("coffee2", "123");
     AdminUser admin = LoginHandler.adminLogin("coffee3", "123");
+  }
+
+  public static void checkRegisterCourse()
+  {
+
+    String roomname = "HSi13";
+    int roomcp = 300;
+    int roomnr = 152;
+
+    System.out.println(RegisterHandler.registerPlace(roomname, roomcp, roomnr));
+
+    TeacherUser teacher = LoginHandler.teacherLogin("coffee2", "123");
+    Place room;
+
+    try
+    {
+      List<Criterion> crit = new ArrayList<Criterion>();
+      crit.add(Restrictions.eq("roomnr_", 152));
+
+      room = HibernateSupport.readOneObject(Place.class, crit);
+      if(room == null)
+        System.out.println("can't find place");
+
+      String name = "OOAD";
+      String desc = "some extra infos";
+      boolean atendees = false;
+      System.out.println(RegisterHandler.registerCourse(name, desc, atendees, teacher, room));
+    }
+    catch (HibernateException e)
+    {
+      System.out.println("registerPlace: " + e);
+      System.out.println("Can't load Room to check if Room already exist.");
+    }
   }
 
   // public static void createUsers()
@@ -165,7 +199,7 @@ public class test_area
   //   }
   //
   // }
-  //
+
   // public static void createPlace()
   // {
   //   String name1 = "HSi13";
