@@ -10,7 +10,6 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.*;
 import classes.*;
-import model.*;
 
 import java.util.Set;
 import java.util.List;

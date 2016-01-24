@@ -1,4 +1,20 @@
 java_binary(
+  name = "intellicourse",
+  srcs = ["main.java"],
+  main_class = "main",
+  deps = [
+    ":Viewer",
+    ":classes",
+    ":hibernate_lib",
+    ":datepicker_lib"
+    ],
+    data = [
+        "hibernate.cfg.xml"
+    ],
+)
+
+
+java_binary(
   name = "createdb",
   srcs = ["DatabaseConstruction.java"],
   main_class = "DatabaseConstruction",
@@ -17,6 +33,12 @@ java_binary(
     "hibernate.cfg.xml"
     ],
   )
+
+java_library(
+  name = "Viewer",
+  srcs = glob(["viewer/*.java"]),
+  deps = [":controller", ":classes", ":hibernate_lib", ":datepicker_lib"],
+)
 
 java_library(
   name = "controller",

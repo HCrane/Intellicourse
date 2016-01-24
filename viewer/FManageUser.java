@@ -12,7 +12,6 @@ import javax.swing.event.ListSelectionListener;
 
 import controller.*;
 import classes.*;
-import model.*;
 import java.util.Set;
 import java.util.List;
 
@@ -237,7 +236,7 @@ public class FManageUser extends JFrame {
     fillTable();
     jt_search_output_users_.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
         public void valueChanged(ListSelectionEvent event) {
-          
+
             int index = jt_search_output_users_.getSelectedRow();
             int studentcount = students_.size();
             int teachercount = teachers_.size();
