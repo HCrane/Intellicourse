@@ -30,9 +30,10 @@
 
     <mapping class="classes.StdUser" />
     <mapping class="classes.StudentUser" />
+    <mapping class="classes.TeacherUser" />
+    <mapping class="classes.AdminUser" />
     <mapping class="classes.Happening" />
     <mapping class="classes.Course" />
-    <mapping class="classes.TeacherUser" />
     <mapping class="classes.Exam" />
     <mapping class="classes.Place" />
 

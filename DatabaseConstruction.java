@@ -23,11 +23,12 @@ public class DatabaseConstruction {
 		//TODO add classes
 		configuration.addAnnotatedClass(StdUser.class);
 		configuration.addAnnotatedClass(StudentUser.class);
+		configuration.addAnnotatedClass(TeacherUser.class);
+		configuration.addAnnotatedClass(AdminUser.class);
 		configuration.addAnnotatedClass(Happening.class);
 		configuration.addAnnotatedClass(Course.class);
-		configuration.addAnnotatedClass(Place.class);
-		configuration.addAnnotatedClass(TeacherUser.class);
 		configuration.addAnnotatedClass(Exam.class);
+		configuration.addAnnotatedClass(Place.class);
 
 		configuration.configure(configFile);
 

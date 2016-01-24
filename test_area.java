@@ -56,12 +56,22 @@ public class test_area
     String phoneT2 = "+06648607978";
     TeacherUser teacher2 = new TeacherUser(unameT2, fnameT2, nnameT2, passwdT2, addrT2, mailT2, phoneT2);
 
+    String fnameA1 = "abc";
+    String nnameA1 = "def";
+    String unameA1 = "coffee4";
+    String passwdA1 = "123";
+    String addrA1 = "trololol 234";
+    String mailA1 = "trolololol@rofl.lol";
+    String phoneA1 = "+06648607978";
+    AdminUser admin1 = new AdminUser(unameA1, fnameA1, nnameA1, passwdA1, addrA1, mailA1, phoneA1);
+
     try
     {
       HibernateSupport.beginTransaction();
       HibernateSupport.commit(student);
       HibernateSupport.commit(teacher);
       HibernateSupport.commit(teacher2);
+      HibernateSupport.commit(admin1);
       HibernateSupport.commitTransaction();
     }
     catch(HibernateException e)
