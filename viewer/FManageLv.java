@@ -143,7 +143,22 @@ public class FManageLv extends JFrame {
 
       btn_del_system_.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent del_system) {
+          int index = jt_current_lvs_.getSelectedRow();
 
+          if (index < courses_student_subsscribed_to_.size() && index >= 0)
+          {
+            String ret_val = DeleteHandler.deleteCoursed(courses_student_subsscribed_to_.get(index));
+            if(ret_val == null)
+            {
+              JOptionPane.showMessageDialog(null, "Successfully deleted");
+              fillTable();
+            }else
+            {
+              JOptionPane.showMessageDialog(null, "Unable to deleted");
+              fillTable();
+
+            }
+          }
 
         }
 
@@ -216,7 +231,7 @@ public class FManageLv extends JFrame {
       courses_student_subsscribed_to_ = new ArrayList<>(teacher_.getCourses());
       for (Course course : GetObjects.getAllCourses()) {
           if (course.getLecturer().getID() == teacher_.getID()) {
-            courses_student_subsscribed_to_.add(course);
+            //courses_student_subsscribed_to_.add(course);
           }
       }
     }
@@ -224,7 +239,7 @@ public class FManageLv extends JFrame {
       courses_student_subsscribed_to_ = new ArrayList<>(admin_.getCourses());
       for (Course course : GetObjects.getAllCourses()) {
           if (course.getLecturer().getID() == admin_.getID()) {
-            courses_student_subsscribed_to_.add(course);
+            //courses_student_subsscribed_to_.add(course);
           }
       }
     }

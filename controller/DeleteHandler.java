@@ -23,7 +23,7 @@ public class DeleteHandler
     TeacherUser teacher = course.getLecturer();
     Set<StdUser> course_user_set = course.getRegistradedUser();
 
-    taecher.removeTeachingCourse(course);
+    teacher.removeTeachingCourse(course);
     for(StdUser user: course_user_set)
     {
       user.removeCourse(course);
@@ -37,7 +37,7 @@ public class DeleteHandler
       {
         System.out.println("Can't update the User!");
         System.out.println(e);
-        return;
+        return "Can't update the User!";
       }
     }
 
@@ -55,7 +55,7 @@ public class DeleteHandler
       {
         System.out.println("Can't delete the Time!");
         System.out.println(e);
-        return;
+        return "Can't delete the Time!";
       }
     }
 
@@ -74,7 +74,8 @@ public class DeleteHandler
     {
       System.out.println("Can't delete the Courses!");
       System.out.println(e);
-      return;
+      return "Can't delete the Courses!";
     }
+    return null;
   }
 }
