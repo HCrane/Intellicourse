@@ -19,7 +19,7 @@ public class Course extends Happening
   @JoinTable(name="course_student", joinColumns=@JoinColumn(name="HAPPENING_ID"), inverseJoinColumns=@JoinColumn(name="STD_USER_ID"))
   private Set<StdUser> registraded_user_;
 
-  @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.EAGER)
   private TeacherUser lecturer_;
 
   private int reg_limit_;
@@ -43,7 +43,7 @@ public class Course extends Happening
     this.registraded_user_.add(user);
     return true;
   }
-  
+
   public final boolean removeUser(StdUser user)
   {
     for(Iterator<StdUser> it = this.registraded_user_.iterator(); it.hasNext();)
@@ -58,8 +58,7 @@ public class Course extends Happening
     return false;
   }
 
-  
-// GETTER SETTER REG_LIMIT_
+// GETTER SETTER REGISTRADED_USER
 //------------------------------------------------------------------------------
   public final Set<StdUser> getRegistradedUser()
   {

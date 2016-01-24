@@ -11,149 +11,230 @@ public class test_area
 {
   public static void main(String[] args)
   {
-    createUserCourse();
-    createTeacherCourse();
-    //deleteCourse();
+    HibernateSupport.init();
+    createUsers();
+    createCourses();
+    setLecturerOfCourse();
+    subscribeForCourse();
+    deleteCourse();
+    HibernateSupport.deinit();
+    System.exit(0);
   }
 
-  public static void createUserCourse()
+  public static void createUsers()
   {
-    String fname = "abc";
-    String nname = "def";
-    String uname = "coffee1";
-    String passwd = "123";
-    String addr = "trololol 234";
-    String mail = "trolololol@rofl.lol";
-    String phone = "+06648607978";
-    StudentUser student = new StudentUser(uname, fname, nname, passwd, addr, mail, phone);
-    
-    HibernateSupport.beginTransaction();
-    HibernateSupport.commit(student);
-    HibernateSupport.commitTransaction();
-    
-    String cname = "DRECKS OOAD";
-    String cdescription = "Unser Tutor is so richtig scheiße";
-    int creg_limit = 250;
-    boolean atendees = true;
-    
-    Course course = new Course(cname, cdescription, creg_limit, atendees);
-    
-    String c2name = "DRECKS OOAD2";
-    String c2description = "Unser Tutor is so richtig scheiße";
-    int c2reg_limit = 250;
-    boolean atendees2 = true;
-    
-    Course course2 = new Course(c2name, c2description, c2reg_limit, atendees2);
-    
-    HibernateSupport.beginTransaction();
-    HibernateSupport.commit(course);
-    HibernateSupport.commitTransaction();
-    
-    
-    HibernateSupport.beginTransaction();
-    HibernateSupport.commit(course2);
-    HibernateSupport.commitTransaction();
-    
-    
-    course.addUser(student);
-    student.addCourse(course);
-    
-    course2.addUser(student);
-    student.addCourse(course2);
-    
-    HibernateSupport.beginTransaction();
-    HibernateSupport.commit(student);
-    HibernateSupport.commit(course);
-    HibernateSupport.commitTransaction();
-  }
+    String fnameS = "abc";
+    String nnameS = "def";
+    String unameS = "coffee1";
+    String passwdS = "123";
+    String addrS = "trololol 234";
+    String mailS = "trolololol@rofl.lol";
+    String phoneS = "+06648607978";
+    StudentUser student = new StudentUser(unameS, fnameS, nnameS, passwdS, addrS, mailS, phoneS);
 
-  public static void createTeacherCourse()
-  {
-    String fname = "TEA";
-    String nname = "CHER";
-    String uname = "coffee2";
-    String passwd = "123";
-    String addr = "trololol 234";
-    String mail = "trolololol@rofl.lol";
-    String phone = "+06648607978";
-    TeacherUser teacher = new TeacherUser(uname, fname, nname, passwd, addr, mail, phone);
-    
-    HibernateSupport.beginTransaction();
-    HibernateSupport.commit(teacher);
-    HibernateSupport.commitTransaction();
-    
-    List<Criterion> crit = new ArrayList<Criterion>();
-    crit.add(Restrictions.eq("name_", "DRECKS OOAD"));
-    Course course = HibernateSupport.readOneObject(Course.class, crit);
-    
-    course.setLecturer(teacher);
-    teacher.addTeachingCourse(course);
+    String fnameT = "abc";
+    String nnameT = "def";
+    String unameT = "coffee2";
+    String passwdT = "123";
+    String addrT = "trololol 234";
+    String mailT = "trolololol@rofl.lol";
+    String phoneT = "+06648607978";
+    TeacherUser teacher = new TeacherUser(unameT, fnameT, nnameT, passwdT, addrT, mailT, phoneT);
+
     try
     {
       HibernateSupport.beginTransaction();
-      HibernateSupport.commit(course);
+      HibernateSupport.commit(student);
       HibernateSupport.commit(teacher);
-      HibernateSupport.commitTransaction();      
+      HibernateSupport.commitTransaction();
     }
     catch(HibernateException e)
     {
-      System.out.println("SHIIIIIT!");
+      System.out.println("Can't create the Users!");
+      System.out.println(e);
+      return;
     }
-    
+  }
+
+  public static void createCourses()
+  {
+    String nameC1 = "OOAD";
+    String descC1 = "some infos";
+    int reg_limitC1 = 250;
+    boolean atendeesC1 = true;
+
+    Course course1 = new Course(nameC1, descC1, reg_limitC1, atendeesC1);
+
+    String nameC2 = "LC";
+    String descC2 = "some infos";
+    int reg_limitC2 = 250;
+    boolean atendeesC2 = true;
+
+    Course course2 = new Course(nameC2, descC2, reg_limitC2, atendeesC2);
+
+    try
+    {
+      HibernateSupport.beginTransaction();
+      HibernateSupport.commit(course1);
+      HibernateSupport.commit(course2);
+      HibernateSupport.commitTransaction();
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't create the Courses!");
+      System.out.println(e);
+      return;
+    }
+
+  }
+
+  public static void setLecturerOfCourse()
+  {
+    Course course1;
+    Course course2;
+    TeacherUser teacher;
+    try
+    {
+      List<Criterion> crit1 = new ArrayList<Criterion>();
+      crit1.add(Restrictions.eq("name_", "OOAD"));
+      course1 = HibernateSupport.readOneObject(Course.class, crit1);
+
+      List<Criterion> crit2 = new ArrayList<Criterion>();
+      crit2.add(Restrictions.eq("name_", "LC"));
+      course2 = HibernateSupport.readOneObject(Course.class, crit2);
+
+      List<Criterion> crit3 = new ArrayList<Criterion>();
+      crit3.add(Restrictions.eq("user_name_", "coffee2"));
+      teacher = HibernateSupport.readOneObject(TeacherUser.class, crit3);
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't get the Data!");
+      System.out.println(e);
+      return;
+    }
+
+    course1.setLecturer(teacher);
+    course2.setLecturer(teacher);
+    teacher.addTeachingCourse(course1);
+    teacher.addTeachingCourse(course2);
+
+    try
+    {
+      HibernateSupport.beginTransaction();
+      HibernateSupport.commit(course1);
+      HibernateSupport.commit(course2);
+      HibernateSupport.commit(teacher);
+      HibernateSupport.commitTransaction();
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't set lecturer of the Courses!");
+      System.out.println(e);
+      return;
+    }
+  }
+
+  public static void subscribeForCourse()
+  {
+    Course course1;
+    Course course2;
+    StudentUser student;
+    try
+    {
+      List<Criterion> crit1 = new ArrayList<Criterion>();
+      crit1.add(Restrictions.eq("name_", "OOAD"));
+      course1 = HibernateSupport.readOneObject(Course.class, crit1);
+
+      List<Criterion> crit2 = new ArrayList<Criterion>();
+      crit2.add(Restrictions.eq("name_", "LC"));
+      course2 = HibernateSupport.readOneObject(Course.class, crit2);
+
+      List<Criterion> crit3 = new ArrayList<Criterion>();
+      crit3.add(Restrictions.eq("user_name_", "coffee1"));
+      student = HibernateSupport.readOneObject(StudentUser.class, crit3);
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't get the Data!");
+      System.out.println(e);
+      return;
+    }
+
+    course1.addUser(student);
+    course2.addUser(student);
+    student.addCourse(course1);
+    student.addCourse(course2);
+
+    try
+    {
+      HibernateSupport.beginTransaction();
+      HibernateSupport.commit(course1);
+      HibernateSupport.commit(course2);
+      HibernateSupport.commit(student);
+      HibernateSupport.commitTransaction();
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't subscribe the Courses!");
+      System.out.println(e);
+      return;
+    }
   }
 
   public static void deleteCourse()
   {
-    List<Criterion> crit = new ArrayList<Criterion>();
-    crit.add(Restrictions.eq("name_", "DRECKS OOAD"));
-    Course course = HibernateSupport.readOneObject(Course.class, crit);
-    
-    TeacherUser teacher = course.getLecturer();
-    teacher.removeTeachingCourse(course);
-    course.setLecturer(null);
-    
-    Set<StdUser> user_set = course.getRegistradedUser();
-    for(Iterator<StdUser> it = user_set.iterator(); it.hasNext();)
+    Course course;
+    try
     {
-      StdUser it_user = it.next();
-      it_user.removeCourse(course);
+      List<Criterion> crit1 = new ArrayList<Criterion>();
+      crit1.add(Restrictions.eq("name_", "OOAD"));
+      course = HibernateSupport.readOneObject(Course.class, crit1);
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't get the Data!");
+      System.out.println(e);
+      return;
+    }
+
+    TeacherUser teacher = course.getLecturer();
+    Set<StdUser> course_user_set = course.getRegistradedUser();
+
+    teacher.removeTeachingCourse(course);
+    for(Iterator<StdUser> it = course_user_set.iterator(); it.hasNext();)
+    {
+      StdUser user_it = it.next();
+      user_it.removeCourse(course);
       try
-      {  
+      {
         HibernateSupport.beginTransaction();
-        HibernateSupport.commit(it_user);
-        HibernateSupport.commitTransaction();  
+        HibernateSupport.commit(user_it);
+        HibernateSupport.commitTransaction();
       }
       catch(HibernateException e)
       {
-        System.out.println("geht nix user speichern!");
+        System.out.println("Can't update the User!");
+        System.out.println(e);
+        return;
       }
     }
+    course.setLecturer(null);
     course.setRegistradedUser(new HashSet<StdUser>(0));
-    
+
     try
     {
       HibernateSupport.beginTransaction();
       HibernateSupport.commit(teacher);
-      HibernateSupport.commitTransaction();  
-    }
-    catch(HibernateException e)
-    {
-      System.out.println("geht nix lehrer speichern!");
-    }
-
-    try
-    {
-      HibernateSupport.beginTransaction();
       HibernateSupport.deleteObject(course);
-      HibernateSupport.commitTransaction();      
+      HibernateSupport.commitTransaction();
     }
     catch(HibernateException e)
     {
-      System.out.println("geht nix kurs löschen!");
+      System.out.println("Can't subscribe the Courses!");
+      System.out.println(e);
+      return;
     }
-    
-    
-    
-  }
 
+  }
 }

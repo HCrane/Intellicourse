@@ -3,6 +3,7 @@ package classes;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -28,16 +29,23 @@ public class HibernateSupport {
 
 	private static SessionFactory sessionFactory;
 
-	static {
-		//System.out.println("HibernateSupport: Constructor");
-		init();
-	}
+	// static {
+	// 	//System.out.println("HibernateSupport: Constructor");
+	// 	init();
+	// }
 
 	public static void create(){
 		// function is not necessary it only activates the static construction above
 	}
 
-	private static void init() {
+	public static void deinit()
+	{
+		System.out.println("Close Hibernate Session.");
+		getCurrentSession().close();
+	}
+
+	public static void init() {
+		System.out.println("Start Hibernate Session.");
 		File configFile = new File("hibernate.cfg.xml");
 
 		Configuration configuration = new Configuration();

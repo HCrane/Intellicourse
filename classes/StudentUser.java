@@ -18,7 +18,7 @@ public class StudentUser extends StdUser
   //DEFAULT CONSTRUCTOR
   @SuppressWarnings("unused")
   public StudentUser(){}
-    
+
   public StudentUser(String user_name, String fist_name, String last_name, String password, String address, String email, String phone)
   {
     this.user_name_ = user_name;

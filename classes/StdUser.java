@@ -27,10 +27,10 @@ public class StdUser
   @GeneratedValue(strategy = GenerationType.TABLE)
   @Column(name = "STD_USER_ID", unique = true, nullable = false)
   protected int id_;
-  
-  @ManyToMany(cascade=CascadeType.ALL, mappedBy="registraded_user_", fetch = FetchType.EAGER)
+
+  @ManyToMany(mappedBy="registraded_user_", fetch = FetchType.EAGER)
   protected Set<Course> registraded_courses_;
-  
+
   protected String first_name_;
   protected String last_name_;
   protected String user_name_; //name_ is always the USERNAME
@@ -38,20 +38,20 @@ public class StdUser
   protected String address_;
   protected String email_;
   protected String phone_;
-  
+
   //DEFAULT CONSTRUCTOR
   @SuppressWarnings("unused")
   public StdUser(){}
-    
+
   public final boolean addCourse(Course course)
   {
-    this.registraded_courses_.add(course);
+    registraded_courses_.add(course);
     return true;
   }
-  
+
   public final boolean removeCourse(Course course)
   {
-    for(Iterator<Course> it = this.registraded_courses_.iterator(); it.hasNext();)
+    for(Iterator<Course> it = registraded_courses_.iterator(); it.hasNext();)
     {
       Course course_it = it.next();
       if(course_it.getID() == course.getID())
@@ -62,7 +62,7 @@ public class StdUser
     }
     return false;
   }
-    
+
   // GETTER SETTER NAME_
   //------------------------------------------------------------------------------
     public final String getUserName()
