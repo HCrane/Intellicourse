@@ -172,7 +172,7 @@ public class FMainMenue extends JFrame
        setVisible(false);
       HibernateSupport.deinit();
        FLogin f_logout_ = new FLogin();
-
+       f_logout_.setLocationRelativeTo(null);
        f_logout_.setVisible(true);
        dispose();
      }
@@ -202,14 +202,17 @@ public class FMainMenue extends JFrame
       {
         if (student_ !=null) {
           FManageLv f_manage_lv_ = new FManageLv(student_);
+          f_manage_lv_.setLocationRelativeTo(null);
           f_manage_lv_.setVisible(true);
         }
         else if (teacher_ != null) {
           FManageLv f_manage_lv_ = new FManageLv(teacher_);
+          f_manage_lv_.setLocationRelativeTo(null);
           f_manage_lv_.setVisible(true);
         }
         else{
           FManageLv f_manage_lv_ = new FManageLv(admin_);
+          f_manage_lv_.setLocationRelativeTo(null);
           f_manage_lv_.setVisible(true);
         }
       }
@@ -227,14 +230,17 @@ public class FMainMenue extends JFrame
       {
         if (admin_ != null) {
           FManageEvent f_manage_event_ = new FManageEvent(admin_);
+          f_manage_event_.setLocationRelativeTo(null);
           f_manage_event_.setVisible(true);
         }else if(teacher_ != null)
         {
           FManageEvent f_manage_event_ = new FManageEvent(admin_);
+          f_manage_event_.setLocationRelativeTo(null);
           f_manage_event_.setVisible(true);
         }else if(student_ != null)
         {
           FManageEvent f_manage_event_ = new FManageEvent(student_);
+          f_manage_event_.setLocationRelativeTo(null);
           f_manage_event_.setVisible(true);
         }
       }
@@ -271,6 +277,7 @@ public class FMainMenue extends JFrame
         {
           if (admin_ !=null) {
             FManageUser f_manage_users_ = new FManageUser(admin_);
+            f_manage_users_.setLocationRelativeTo(null);
             f_manage_users_.setVisible(true);
           }
         }
@@ -289,6 +296,7 @@ public class FMainMenue extends JFrame
         {
           if (admin_ !=null) {
             FManagePlace f_manage_places_ = new FManagePlace(admin_);
+            f_manage_places_.setLocationRelativeTo(null);
             f_manage_places_.setVisible(true);
           }
         }

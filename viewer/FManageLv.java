@@ -63,14 +63,17 @@ public class FManageLv extends JFrame {
       public void actionPerformed(ActionEvent search_system_course) {
         if (student_ !=null) {
           FAddCourseCV f_add_course_ = new FAddCourseCV(student_);
+          f_add_course_.setLocationRelativeTo(null);
           f_add_course_.setVisible(true);
         }
         else if (teacher_ != null) {
           FAddCourseCV f_add_course_ = new FAddCourseCV(teacher_);
+          f_add_course_.setLocationRelativeTo(null);
           f_add_course_.setVisible(true);
         }
         else{
           FAddCourseCV f_add_course_ = new FAddCourseCV(admin_);
+          f_add_course_.setLocationRelativeTo(null);
           f_add_course_.setVisible(true);
         }
 
@@ -129,6 +132,7 @@ public class FManageLv extends JFrame {
       btn_add_system_.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent add_system) {
           FCreateLV f_create_course_ = new FCreateLV();
+          f_create_course_.setLocationRelativeTo(null);
           f_create_course_.setVisible(true);
         }
 
@@ -178,6 +182,7 @@ public class FManageLv extends JFrame {
           if (index < courses_student_subsscribed_to_.size() && index >= 0)
           {
             FManageTime f_manage_time = new FManageTime(courses_student_subsscribed_to_.get(index));
+            f_manage_time.setLocationRelativeTo(null);
             f_manage_time.setVisible(true);
 
           }

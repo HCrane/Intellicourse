@@ -75,6 +75,7 @@ public class FManagePlace extends JFrame {
 		btn_add_place_.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
         FCreatePlace f_create_place = new FCreatePlace();
+				f_create_place.setLocationRelativeTo(null);
         f_create_place.setVisible(true);
 			}
 

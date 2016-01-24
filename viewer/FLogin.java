@@ -104,18 +104,21 @@ public class FLogin extends JFrame
           if (sucess_admin) {
             setVisible(false);
             FMainMenue f_main_menue_ = new FMainMenue(admin);
+            f_main_menue_.setLocationRelativeTo(null);
             f_main_menue_.setVisible(true);
             dispose();
           }else if(sucess_teacher)
           {
             setVisible(false);
             FMainMenue f_main_menue_ = new FMainMenue(teacher);
+            f_main_menue_.setLocationRelativeTo(null);
             f_main_menue_.setVisible(true);
             dispose();
           }else if(sucess_student)
           {
             setVisible(false);
             FMainMenue f_main_menue_ = new FMainMenue(student);
+            f_main_menue_.setLocationRelativeTo(null);
             f_main_menue_.setVisible(true);
             dispose();
           }else {

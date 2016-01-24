@@ -52,6 +52,7 @@ public class FManageTime extends JFrame{
     btn_add_time_.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent add_time_to_lv) {
         FCreateTime f_create_time = new FCreateTime(course_);
+        f_create_time.setLocationRelativeTo(null);
         f_create_time.setVisible(true);
 
       }

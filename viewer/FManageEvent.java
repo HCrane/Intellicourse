@@ -63,6 +63,7 @@ public class FManageEvent extends JFrame
       public void actionPerformed(ActionEvent search_system)
       {
         FAddCourseCV f_add_course_ = new FAddCourseCV();
+        f_add_course_.setLocationRelativeTo(null);
         f_add_course_.setVisible(true);
       }
 
@@ -80,6 +81,7 @@ public class FManageEvent extends JFrame
         public void actionPerformed(ActionEvent add_system_event)
         {
           FCreateEvent f_create_event_ = new FCreateEvent();
+          f_create_event_.setLocationRelativeTo(null);
           f_create_event_.setVisible(true);
         }
 
