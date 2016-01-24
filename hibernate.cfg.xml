@@ -33,6 +33,7 @@
     <mapping class="classes.Happening" />
     <mapping class="classes.Course" />
     <mapping class="classes.TeacherUser" />
+    <mapping class="classes.Exam" />
     <mapping class="classes.Place" />
 
 

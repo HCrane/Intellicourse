@@ -29,5 +29,6 @@ public class StudentUser extends StdUser
     this.email_ = email;
     this.phone_ = phone;
     this.registraded_courses_ = new HashSet<Course>(0);
+    this.registraded_exams_ = new HashSet<Exam>(0);
   }
 }

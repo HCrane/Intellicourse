@@ -18,6 +18,9 @@ public class TeacherUser extends StdUser
   @OneToMany(fetch = FetchType.EAGER, mappedBy="lecturer_")
   private Set<Course> teaching_courses_;
 
+  @OneToMany(fetch = FetchType.EAGER, mappedBy="lecturerExam_")
+  private Set<Exam> teaching_exams_;
+
   //DEFAULT CONSTRUCTOR
   @SuppressWarnings("unused")
   public TeacherUser(){}
@@ -32,7 +35,9 @@ public class TeacherUser extends StdUser
     this.email_ = email;
     this.phone_ = phone;
     this.registraded_courses_ = new HashSet<Course>(0);
+    this.registraded_exams_ = new HashSet<Exam>(0);
     this.teaching_courses_ = new HashSet<Course>(0);
+    this.teaching_exams_ = new HashSet<Exam>(0);
   }
 
   public final boolean addTeachingCourse(Course course)
@@ -47,6 +52,26 @@ public class TeacherUser extends StdUser
     {
       Course course_it = it.next();
       if(course_it.getID() == course.getID())
+      {
+        it.remove();
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public final boolean addTeachingExam(Exam exam)
+  {
+    this.teaching_exams_.add(exam);
+    return true;
+  }
+
+  public final boolean removeTeachingExam(Exam exam)
+  {
+    for(Iterator<Exam> it = this.teaching_exams_.iterator(); it.hasNext();)
+    {
+      Exam exam_it = it.next();
+      if(exam_it.getID() == exam.getID())
       {
         it.remove();
         return true;

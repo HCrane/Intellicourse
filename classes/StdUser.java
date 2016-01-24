@@ -31,6 +31,9 @@ public class StdUser
   @ManyToMany(mappedBy="registraded_user_", fetch = FetchType.EAGER)
   protected Set<Course> registraded_courses_;
 
+  @ManyToMany(mappedBy="registraded_user_exam_", fetch = FetchType.EAGER)
+  protected Set<Exam> registraded_exams_;
+
   protected String first_name_;
   protected String last_name_;
   protected String user_name_; //name_ is always the USERNAME
@@ -63,6 +66,25 @@ public class StdUser
     return false;
   }
 
+  public final boolean addExam(Exam exam)
+  {
+    registraded_exams_.add(exam);
+    return true;
+  }
+
+  public final boolean removeExam(Exam exam)
+  {
+    for(Iterator<Exam> it = registraded_exams_.iterator(); it.hasNext();)
+    {
+      Exam exam_it = it.next();
+      if(exam_it.getID() == exam.getID())
+      {
+        it.remove();
+        return true;
+      }
+    }
+    return false;
+  }
   // GETTER SETTER NAME_
   //------------------------------------------------------------------------------
     public final String getUserName()

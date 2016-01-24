@@ -19,6 +19,10 @@ public class test_area
     setLecturerOfCourse();
     subscribeForCourse();
     deleteCourse();
+    createExam();
+    setLecturerOfExam();
+    subscribeForExam();
+    deleteExam();
     HibernateSupport.deinit();
     System.exit(0);
   }
@@ -43,11 +47,21 @@ public class test_area
     String phoneT = "+06648607978";
     TeacherUser teacher = new TeacherUser(unameT, fnameT, nnameT, passwdT, addrT, mailT, phoneT);
 
+    String fnameT2 = "abc";
+    String nnameT2 = "def";
+    String unameT2 = "coffee3";
+    String passwdT2 = "123";
+    String addrT2 = "trololol 234";
+    String mailT2 = "trolololol@rofl.lol";
+    String phoneT2 = "+06648607978";
+    TeacherUser teacher2 = new TeacherUser(unameT2, fnameT2, nnameT2, passwdT2, addrT2, mailT2, phoneT2);
+
     try
     {
       HibernateSupport.beginTransaction();
       HibernateSupport.commit(student);
       HibernateSupport.commit(teacher);
+      HibernateSupport.commit(teacher2);
       HibernateSupport.commitTransaction();
     }
     catch(HibernateException e)
@@ -318,6 +332,200 @@ public class test_area
       return;
     }
 
+  }
+
+  public static void createExam()
+  {
+    String nameE1 = "SNP";
+    String descE1 = "some extra infos";
+    int reg_limitE1 = 150;
+
+    String nameE2 = "LP";
+    String descE2 = "some extra infos";
+    int reg_limitE2 = 150;
+
+    Exam exam1 = new Exam(nameE1, descE1, reg_limitE1);
+    Exam exam2 = new Exam(nameE2, descE2, reg_limitE2);
+
+    try
+    {
+      HibernateSupport.beginTransaction();
+      HibernateSupport.commit(exam1);
+      HibernateSupport.commit(exam2);
+      HibernateSupport.commitTransaction();
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't create the Exames!");
+      System.out.println(e);
+      return;
+    }
+
+  }
+
+  public static void setLecturerOfExam()
+  {
+    Exam exam1;
+    Exam exam2;
+
+    TeacherUser teacher1;
+    TeacherUser teacher2;
+    try
+    {
+      List<Criterion> crit1 = new ArrayList<Criterion>();
+      crit1.add(Restrictions.eq("name_", "SNP"));
+      exam1 = HibernateSupport.readOneObject(Exam.class, crit1);
+
+      List<Criterion> crit2 = new ArrayList<Criterion>();
+      crit2.add(Restrictions.eq("name_", "LP"));
+      exam2 = HibernateSupport.readOneObject(Exam.class, crit2);
+
+      List<Criterion> crit3 = new ArrayList<Criterion>();
+      crit3.add(Restrictions.eq("user_name_", "coffee2"));
+      teacher1 = HibernateSupport.readOneObject(TeacherUser.class, crit3);
+
+      List<Criterion> crit4 = new ArrayList<Criterion>();
+      crit4.add(Restrictions.eq("user_name_", "coffee3"));
+      teacher2 = HibernateSupport.readOneObject(TeacherUser.class, crit4);
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't get the Data!");
+      System.out.println(e);
+      return;
+    }
+
+    exam1.setLecturerExam(teacher2);
+    teacher2.addTeachingExam(exam1);
+    exam2.setLecturerExam(teacher1);
+    teacher1.addTeachingExam(exam2);
+
+    try
+    {
+      HibernateSupport.beginTransaction();
+      HibernateSupport.commit(exam1);
+      HibernateSupport.commit(exam2);
+      HibernateSupport.commit(teacher1);
+      HibernateSupport.commit(teacher2);
+      HibernateSupport.commitTransaction();
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't save the teachers of Exames!");
+      System.out.println(e);
+      return;
+    }
+  }
+
+  public static void subscribeForExam()
+  {
+    Exam exam1;
+    Exam exam2;
+
+    StudentUser student;
+    TeacherUser teacher;
+    try
+    {
+      List<Criterion> crit1 = new ArrayList<Criterion>();
+      crit1.add(Restrictions.eq("name_", "SNP"));
+      exam1 = HibernateSupport.readOneObject(Exam.class, crit1);
+
+      List<Criterion> crit2 = new ArrayList<Criterion>();
+      crit2.add(Restrictions.eq("name_", "LP"));
+      exam2 = HibernateSupport.readOneObject(Exam.class, crit2);
+
+      List<Criterion> crit3 = new ArrayList<Criterion>();
+      crit3.add(Restrictions.eq("user_name_", "coffee1"));
+      student = HibernateSupport.readOneObject(StudentUser.class, crit3);
+
+      List<Criterion> crit4 = new ArrayList<Criterion>();
+      crit4.add(Restrictions.eq("user_name_", "coffee3"));
+      teacher = HibernateSupport.readOneObject(TeacherUser.class, crit4);
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't get the Data!");
+      System.out.println(e);
+      return;
+    }
+
+    student.addExam(exam2);
+    exam2.addUserExam(student);
+
+    teacher.addExam(exam1);
+    exam1.addUserExam(teacher);
+
+    try
+    {
+      HibernateSupport.beginTransaction();
+      HibernateSupport.commit(exam1);
+      HibernateSupport.commit(exam2);
+      HibernateSupport.commit(teacher);
+      HibernateSupport.commit(student);
+      HibernateSupport.commitTransaction();
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't subscribe to the Exames!");
+      System.out.println(e);
+      return;
+    }
+  }
+
+  public static void deleteExam()
+  {
+    Exam exam;
+    try
+    {
+      List<Criterion> crit1 = new ArrayList<Criterion>();
+      crit1.add(Restrictions.eq("name_", "SNP"));
+      exam = HibernateSupport.readOneObject(Exam.class, crit1);
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't get the Data!");
+      System.out.println(e);
+      return;
+    }
+
+    TeacherUser teacher = exam.getLecturerExam();
+    Set<StdUser> exam_user_set = exam.getRegistradedUserExam();
+
+    teacher.removeTeachingExam(exam);
+    for(Iterator<StdUser> it = exam_user_set.iterator(); it.hasNext();)
+    {
+      StdUser user_it = it.next();
+      user_it.removeExam(exam);
+      try
+      {
+        HibernateSupport.beginTransaction();
+        HibernateSupport.commit(user_it);
+        HibernateSupport.commitTransaction();
+      }
+      catch(HibernateException e)
+      {
+        System.out.println("Can't update the User!");
+        System.out.println(e);
+        return;
+      }
+    }
+    exam.setLecturerExam(null);
+    exam.setRegistradedUserExam(new HashSet<StdUser>(0));
+    exam.setRoom(null);
+
+    try
+    {
+      HibernateSupport.beginTransaction();
+      HibernateSupport.commit(teacher);
+      HibernateSupport.deleteObject(exam);
+      HibernateSupport.commitTransaction();
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't subscribe the Courses!");
+      System.out.println(e);
+      return;
+    }
   }
 
 }
