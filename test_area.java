@@ -27,7 +27,8 @@ public class test_area
     // deleteExam();
     //checkRegisterUser();
     // loginchecker();
-    checkRegisterCourse();
+    //checkRegisterRoomAndCourse();
+    addTimeToHappening();
     HibernateSupport.deinit();
     System.exit(0);
   }
@@ -53,7 +54,7 @@ public class test_area
     AdminUser admin = LoginHandler.adminLogin("coffee3", "123");
   }
 
-  public static void checkRegisterCourse()
+  public static void checkRegisterRoomAndCourse()
   {
 
     String roomname = "HSi13";
@@ -83,6 +84,30 @@ public class test_area
     {
       System.out.println("registerPlace: " + e);
       System.out.println("Can't load Room to check if Room already exist.");
+    }
+  }
+
+  public static void addTimeToHappening()
+  {
+    String start_time = "30.11.2015 15:00";
+    String end_time = "30.11.2015 17:00";
+
+    Date new_start_time;
+    Date new_end_time;
+    try
+    {
+      SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+      new_start_time = sdf.parse(start_time);
+      new_end_time = sdf.parse(end_time);
+
+      List<Criterion> crit = new ArrayList<Criterion>();
+      crit.add(Restrictions.eq("name_", "OOAD"));
+
+      Course course = HibernateSupport.readOneObject(Course.class, crit);
+      UpdateObjects.updateCourse(course, null, null, null, new_start_time, new_end_time);
+    }
+    catch(ParseException e)
+    {
     }
   }
 

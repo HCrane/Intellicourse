@@ -26,7 +26,7 @@ public class Time
 {
   @Id
   @GeneratedValue(strategy=GenerationType.TABLE)
-  @Column(name = "HAPPENING_ID", unique = true, nullable = false)
+  @Column(name = "TIME_ID", unique = true, nullable = false)
   private int id_;
 
   @ManyToOne(fetch = FetchType.EAGER)

@@ -126,6 +126,7 @@ public class RegisterHandler
     return null;
   }
 
+// REGISTER NEW PLACE
   public static String registerPlace(String name, int roomcp, int roomnr)
   {
     if(name.isEmpty() || (roomcp <= 0) || (roomnr <= 0))
