@@ -78,13 +78,6 @@ public class FManageLv extends JFrame {
       }
 
     });
-/*
-    btn_add_curriculum_ = new JButton("ADD LV to Curr.");
-    constraints_.fill = GridBagConstraints.HORIZONTAL;
-    constraints_.gridx = 2;
-    constraints_.gridy = 2;
-    constraints_.insets = new Insets(0, 0, 0, 10);
-    content_panel_.add(btn_add_curriculum_, constraints_);*/
 
     btn_del_curriculum_ = new JButton("DELETE LV from Curr.");
     constraints_.fill = GridBagConstraints.HORIZONTAL;
@@ -130,7 +123,7 @@ public class FManageLv extends JFrame {
       btn_add_system_ = new JButton("ADD LV to System.");
       constraints_.fill = GridBagConstraints.HORIZONTAL;
       constraints_.gridx = 2;
-      constraints_.gridy = 4;
+      constraints_.gridy = 3;
       constraints_.insets = new Insets(0, 0, 0, 10);
       content_panel_.add(btn_add_system_, constraints_);
 
@@ -145,7 +138,7 @@ public class FManageLv extends JFrame {
       btn_del_system_ = new JButton("DELETE LV from System.");
       constraints_.fill = GridBagConstraints.HORIZONTAL;
       constraints_.gridx = 2;
-      constraints_.gridy = 5;
+      constraints_.gridy = 4;
       constraints_.insets = new Insets(0, 0, 0, 10);
       content_panel_.add(btn_del_system_, constraints_);
 
@@ -160,7 +153,7 @@ public class FManageLv extends JFrame {
 			btn_manage_time_ = new JButton("Manage Time for LV");
 	    constraints_.fill = GridBagConstraints.HORIZONTAL;
 	    constraints_.gridx = 2;
-	    constraints_.gridy = 6;
+	    constraints_.gridy = 5;
 	    constraints_.insets = new Insets(0, 0, 10, 10);
 	    content_panel_.add(btn_manage_time_, constraints_);
 
