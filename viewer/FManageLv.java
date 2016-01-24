@@ -44,7 +44,7 @@ public class FManageLv extends JFrame {
 
   private void init() {
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    setSize(550, 400);
+    setSize(600, 400);
   }
 
   private void createLvInterface() {
@@ -81,7 +81,7 @@ public class FManageLv extends JFrame {
     btn_del_curriculum_ = new JButton("DELETE LV from Curr.");
     constraints_.fill = GridBagConstraints.HORIZONTAL;
     constraints_.gridx = 2;
-    constraints_.gridy = 2;
+    constraints_.gridy = 1;
     constraints_.insets = new Insets(0, 0, 10, 10);
     content_panel_.add(btn_del_curriculum_, constraints_);
 
@@ -122,7 +122,7 @@ public class FManageLv extends JFrame {
       btn_add_system_ = new JButton("ADD LV to System.");
       constraints_.fill = GridBagConstraints.HORIZONTAL;
       constraints_.gridx = 2;
-      constraints_.gridy = 3;
+      constraints_.gridy = 2;
       constraints_.insets = new Insets(0, 0, 0, 10);
       content_panel_.add(btn_add_system_, constraints_);
 
@@ -137,8 +137,8 @@ public class FManageLv extends JFrame {
       btn_del_system_ = new JButton("DELETE LV from System.");
       constraints_.fill = GridBagConstraints.HORIZONTAL;
       constraints_.gridx = 2;
-      constraints_.gridy = 4;
-      constraints_.insets = new Insets(0, 0, 0, 10);
+      constraints_.gridy = 3;
+      constraints_.insets = new Insets(0, 0, 10, 10);
       content_panel_.add(btn_del_system_, constraints_);
 
       btn_del_system_.addActionListener(new ActionListener() {
@@ -167,8 +167,8 @@ public class FManageLv extends JFrame {
 			btn_manage_time_ = new JButton("Manage Time for LV");
 	    constraints_.fill = GridBagConstraints.HORIZONTAL;
 	    constraints_.gridx = 2;
-	    constraints_.gridy = 5;
-	    constraints_.insets = new Insets(0, 0, 10, 10);
+	    constraints_.gridy = 4;
+	    constraints_.insets = new Insets(0, 0, 0, 10);
 	    content_panel_.add(btn_manage_time_, constraints_);
 
       btn_manage_time_.addActionListener(new ActionListener() {
@@ -211,7 +211,7 @@ public class FManageLv extends JFrame {
     constraints_.gridx = 0;
     constraints_.gridy = 0;
     constraints_.gridwidth = 2;
-    constraints_.gridheight = 4;
+    constraints_.gridheight = 5;
     constraints_.ipadx = 340;
     constraints_.ipady = 260;
     constraints_.insets = new Insets(0, 0, 0, 10);
