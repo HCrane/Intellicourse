@@ -41,12 +41,11 @@ public class SubscribeHandler
       return "User or Course is not selected.";
     }
 
-    Set<StdUser>students = course.getStudents();
+    Set<StdUser>students = course.getRegistradedUser();
     boolean is_in_set = false;
-    for(Iterator<StudentUser> it = students.iterator(); it.hasNext();)
+    for(StdUser students_it : students)
     {
-      StudentUser it_student = it.next();
-      if(it_student.getID() == student.getID())
+      if(students_it.getID() == user.getID())
       {
         is_in_set = true;
         break;
