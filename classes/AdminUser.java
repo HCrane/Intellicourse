@@ -25,12 +25,13 @@ public class AdminUser extends StdUser
   @SuppressWarnings("unused")
   public AdminUser(){}
 
-  public AdminUser(String user_name, String fist_name, String last_name, String password, String address, String email, String phone)
+  public AdminUser(String user_name, String fist_name, String last_name, String password, Date dob, String address, String email, String phone)
   {
     this.user_name_ = user_name;
     this.first_name_ = fist_name;
     this.last_name_ = last_name;
     this.password_ = password;
+    this.date_of_birth_ = dob;
     this.address_ = address;
     this.email_ = email;
     this.phone_ = phone;

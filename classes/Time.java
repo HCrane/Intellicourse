@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -21,45 +22,27 @@ import javax.persistence.CascadeType;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public class Happening
+public class Time
 {
   @Id
   @GeneratedValue(strategy=GenerationType.TABLE)
   @Column(name = "HAPPENING_ID", unique = true, nullable = false)
-  protected int id_;
+  private int id_;
 
-  @OneToMany(fetch = FetchType.EAGER, mappedBy="happening_")
-  private Set<Time> times_;
+  @ManyToOne(fetch = FetchType.EAGER)
+  private Happening happening_;
 
-  @OneToOne
-  protected Place room_;
-
-  protected String name_;
-  protected String description_;
-
+  private Date start_time_;
+  private Date end_time_;
 
 // DEFAULT CONSTRUCTOR
   @SuppressWarnings("unused")
-  public Happening(){}
+  public Time(){}
 
-  public final boolean addTime(Time time)
+  public Time(Date start_time, Date end_time)
   {
-    this.times_.add(time);
-    return true;
-  }
-
-  public final boolean removeTime(Time time)
-  {
-    for(Iterator<Time> it = this.times_.iterator(); it.hasNext();)
-    {
-      Time time_it = it.next();
-      if(time_it.getID() == time.getID())
-      {
-        it.remove();
-        return true;
-      }
-    }
-    return false;
+    this.start_time_ = start_time;
+    this.end_time_ = end_time;
   }
 
 // GETTER ID_
@@ -68,53 +51,40 @@ public class Happening
     {
       return id_;
     }
-//------------------------------------------------------------------------------
 
-// GETTER SETTER NAME_
+// GETTER SETTER START_TIME_
 //------------------------------------------------------------------------------
-    public final String getName()
+    public final Date getStartTime()
     {
-      return name_;
+      return start_time_;
     }
-    public final void setName(String name)
+    public final void setStartTime(Date start_time)
     {
-      this.name_ = name;
-    }
-//------------------------------------------------------------------------------
-
-// GETTER SETTER DESCRIPTION_
-//------------------------------------------------------------------------------
-    public final String getDescription()
-    {
-      return description_;
-    }
-    public final void setDescription(String description)
-    {
-      this.description_ = description;
+      this.start_time_ = start_time;
     }
 //------------------------------------------------------------------------------
 
-// GETTER SETTER ROOM
+// GETTER SETTER END_TIME_
 //------------------------------------------------------------------------------
-    public final Place getRoom()
+    public final Date getEndTime()
     {
-      return room_;
+      return end_time_;
     }
-    public final void setRoom(Place room)
+    public final void setEndTime(Date end_time)
     {
-      this.room_ = room;
+      this.end_time_ = end_time;
     }
 //------------------------------------------------------------------------------
 
-// GETTER SETTER TIMES_
+// GETTER SETTER HAPPENING_
 //------------------------------------------------------------------------------
-    public final Set<Time> getTimes()
+    public final Happening getHappening()
     {
-      return times_;
+      return happening_;
     }
-    public final void setTimes(Set<Time> times)
+    public final void setHappening(Happening happening)
     {
-      this.times_ = times;
+      this.happening_ = happening;
     }
 //------------------------------------------------------------------------------
 }

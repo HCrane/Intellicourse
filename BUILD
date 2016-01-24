@@ -12,7 +12,7 @@ java_binary(
   name = "ta",
   srcs = ["test_area.java"],
   main_class = "test_area",
-  deps = [":hibernate_lib", ":classes",  ],
+  deps = [":hibernate_lib", ":classes", ":controller", ],
   data = [
     "hibernate.cfg.xml"
     ],

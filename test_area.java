@@ -2,6 +2,7 @@ import java.util.*;
 import java.text.*;
 
 import classes.*;
+import controller.*;
 
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
