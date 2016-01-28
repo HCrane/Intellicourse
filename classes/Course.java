@@ -20,7 +20,7 @@ public class Course extends Happening
   private Set<StdUser> registraded_user_;
 
   @ManyToOne(fetch = FetchType.EAGER)
-  private TeacherUser lecturer_;
+  private StdUser lecturer_;
 
   private boolean antendees_;
 
@@ -70,11 +70,11 @@ public class Course extends Happening
 
 // GETTER SETTER LECTURER
 //------------------------------------------------------------------------------
-  public final TeacherUser getLecturer()
+  public final StdUser getLecturer()
   {
     return lecturer_;
   }
-  public final void setLecturer(TeacherUser lecturer)
+  public final void setLecturer(StdUser lecturer)
   {
     this.lecturer_ = lecturer;
   }

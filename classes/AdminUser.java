@@ -81,4 +81,16 @@ public class AdminUser extends StdUser
     return false;
   }
 
+// GETTER SETTER teaching_courses_
+//------------------------------------------------------------------------------
+    public final Set<Course> getTeachingCourses()
+    {
+      return teaching_courses_;
+    }
+    public final void setTeachingCourses(Set<Course> courses)
+    {
+      this.teaching_courses_ = courses;
+    }
+//------------------------------------------------------------------------------
+
 }

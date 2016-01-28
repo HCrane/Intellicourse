@@ -20,7 +20,7 @@ public class DeleteHandler
     if(check_course == null)
       return "Course not existing.";
 
-    TeacherUser teacher = course.getLecturer();
+    TeacherUser teacher = (TeacherUser)course.getLecturer();
     Set<StdUser> course_user_set = course.getRegistradedUser();
 
     teacher.removeTeachingCourse(course);
