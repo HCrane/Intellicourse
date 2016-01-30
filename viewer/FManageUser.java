@@ -33,8 +33,6 @@ public class FManageUser extends JFrame {
 	private JButton btn_make_teacher_;
 	private JButton btn_make_admin_;
 
-	private StudentUser student_ = null;
-	private TeacherUser teacher_ = null;
 	private AdminUser admin_ = null;
 
   private List<StudentUser> students_;
@@ -88,7 +86,7 @@ public class FManageUser extends JFrame {
     {
       public void actionPerformed(ActionEvent change_user_student)
       {
-        /*
+
         int index = jt_search_output_users_.getSelectedRow();
         int studentcount = students_.size();
         int teachercount = teachers_.size();
@@ -100,19 +98,20 @@ public class FManageUser extends JFrame {
           //never called!
         }else if(selectedType == "Teacher")
         {
-          TeacherUser to_del = teachers_.get(index+studentcount);
-          String ret_val = authorizeUser.teacher_to_student(to_del, new StudentUser());
+          TeacherUser to_del = teachers_.get(index-studentcount);
+          String ret_val = AuthorizeHandler.userToStudent(to_del);
           if (ret_val != null) {
             JOptionPane.showMessageDialog(null, ret_val);
 
           }
         }else if(selectedType == "Admin")
         {
-          AdminUser to_del = admins_.get(index+studentcount+teachercount);
-          if (admin_.getName() == to_del.getName()) {
-            JOptionPane.showMessageDialog(null, "You can't delete yourself!");
+          AdminUser to_del = admins_.get(index-studentcount-teachercount);
+          if (to_del.getID() == admin_.getID()) {
+            JOptionPane.showMessageDialog(null, "You can't change yourself!");
+            return;
           }
-          String ret_val = authorizeUser.admin_to_student(to_del, new StudentUser());
+          String ret_val = AuthorizeHandler.userToStudent(to_del);
           if (ret_val != null) {
             JOptionPane.showMessageDialog(null, ret_val);
 
@@ -124,7 +123,7 @@ public class FManageUser extends JFrame {
 
         }
 
-        fillTable();*/
+        fillTable();
       }
     });
 
@@ -139,7 +138,7 @@ public class FManageUser extends JFrame {
     {
       public void actionPerformed(ActionEvent change_user_teacher)
       {
-/*
+
         int index = jt_search_output_users_.getSelectedRow();
         int studentcount = students_.size();
         int teachercount = teachers_.size();
@@ -149,28 +148,33 @@ public class FManageUser extends JFrame {
 
         if (selectedType == "Student") {
           StudentUser to_del = students_.get(index);
-          String ret_val = authorizeUser.student_to_admin(to_del, new AdminUser());
+          String ret_val = AuthorizeHandler.userToTeacher(to_del);
           if (ret_val != null) {
             JOptionPane.showMessageDialog(null, ret_val);
 
           }
         }else if(selectedType == "Teacher")
         {
-          TeacherUser to_del = teachers_.get(index+studentcount);
-          String ret_val = authorizeUser.teacher_to_admin(to_del, new AdminUser());
+          //never called
+
+        }else if(selectedType == "Admin")
+        {
+          AdminUser to_del = admins_.get(index-studentcount-teachercount);
+          if (to_del.getID() == admin_.getID()) {
+            JOptionPane.showMessageDialog(null, "You can't change yourself!");
+            return;
+          }
+          String ret_val = AuthorizeHandler.userToTeacher(to_del);
           if (ret_val != null) {
             JOptionPane.showMessageDialog(null, ret_val);
 
           }
-        }else if(selectedType == "Admin")
-        {
-          //never called
         }else
         {
           JOptionPane.showMessageDialog(null, "Error!");
 
         }
-        fillTable();*/
+        fillTable();
       }
     });
 
@@ -185,7 +189,7 @@ public class FManageUser extends JFrame {
     {
       public void actionPerformed(ActionEvent change_user_admin)
       {
-        /*
+
         int index = jt_search_output_users_.getSelectedRow();
         int studentcount = students_.size();
         int teachercount = teachers_.size();
@@ -195,31 +199,28 @@ public class FManageUser extends JFrame {
 
         if (selectedType == "Student") {
           StudentUser to_del = students_.get(index);
-          String ret_val = authorizeUser.student_to_teacher(to_del, new TeacherUser());
+          String ret_val = AuthorizeHandler.userToAdmin(to_del);
           if (ret_val != null) {
             JOptionPane.showMessageDialog(null, ret_val);
 
           }
         }else if(selectedType == "Teacher")
         {
-          //never called!
-        }else if(selectedType == "Admin")
-        {
-          AdminUser to_del = admins_.get(index+studentcount+teachercount);
-          if (admin_.getName() == to_del.getName()) {
-            JOptionPane.showMessageDialog(null, "You can't delete yourself!");
-          }
-          String ret_val = authorizeUser.admin_to_teacher(to_del, new TeacherUser());
+          TeacherUser to_del = teachers_.get(index-studentcount);
+          String ret_val = AuthorizeHandler.userToAdmin(to_del);
           if (ret_val != null) {
             JOptionPane.showMessageDialog(null, ret_val);
 
           }
+        }else if(selectedType == "Admin")
+        {
+          //never called
         }else
         {
           JOptionPane.showMessageDialog(null, "Error!");
 
         }
-        fillTable();*/
+        fillTable();
       }
     });
 
@@ -242,6 +243,11 @@ public class FManageUser extends JFrame {
             int studentcount = students_.size();
             int teachercount = teachers_.size();
             int admincount = admins_.size();
+
+            if(jtm_search_output_users_.getRowCount() == 0)
+            {
+              return;
+            }
 
             String selectedType = (String)jtm_search_output_users_.getValueAt(index, 1);
 
@@ -299,9 +305,9 @@ public class FManageUser extends JFrame {
       String[] data = new String[5];
       data[0] = String.valueOf(student.getID());
       data[1] = "Student";
-      data[2] = student.getName();
+      data[2] = student.getUserName();
       data[3] = student.getFirstName();
-      data[4] = student.getLasttName();
+      data[4] = student.getLastName();
       jtm_search_output_users_.addRow(data);
     }
 
@@ -309,9 +315,9 @@ public class FManageUser extends JFrame {
       String[] data = new String[5];
       data[0] = String.valueOf(teacher.getID());
       data[1] = "Teacher";
-      data[2] = teacher.getName();
+      data[2] = teacher.getUserName();
       data[3] = teacher.getFirstName();
-      data[4] = teacher.getLasttName();
+      data[4] = teacher.getLastName();
       jtm_search_output_users_.addRow(data);
     }
 
@@ -319,9 +325,9 @@ public class FManageUser extends JFrame {
       String[] data = new String[5];
       data[0] = String.valueOf(admin.getID());
       data[1] = "Admin";
-      data[2] = admin.getName();
+      data[2] = admin.getUserName();
       data[3] = admin.getFirstName();
-      data[4] = admin.getLasttName();
+      data[4] = admin.getLastName();
       jtm_search_output_users_.addRow(data);
     }
 

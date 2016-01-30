@@ -132,7 +132,7 @@ public class FMainMenue extends JFrame
     constraints_.gridy = 2;
     content_panel_.add(lb_user_type_, constraints_);
 
-    lb_t_name_ = new JLabel((student_ != null)?student_.getName() :((teacher_!= null)?teacher_.getName() :admin_.getName() ));
+    lb_t_name_ = new JLabel((student_ != null)?student_.getUserName() :((teacher_!= null)?teacher_.getUserName() :admin_.getUserName() ));
     constraints_.fill = GridBagConstraints.HORIZONTAL;
     constraints_.gridx = 1;
     constraints_.gridy = 1;

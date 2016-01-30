@@ -102,7 +102,7 @@ public class StdUser
 
 // GETTER SETTER NAME_
 //------------------------------------------------------------------------------
-    public final String getName()
+    public final String getUserName()
     {
       return user_name_;
     }
