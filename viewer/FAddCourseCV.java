@@ -65,13 +65,13 @@ public class FAddCourseCV extends JFrame
         Set<Course> courses_student_subsscribed_to;
 
         if (student_ !=null) {
-          courses_student_subsscribed_to = student_.getCourses();
+          courses_student_subsscribed_to = student_.getRegistradedCourse();
         }
         else if (teacher_ != null) {
-          courses_student_subsscribed_to = teacher_.getCourses();
+          courses_student_subsscribed_to = teacher_.getRegistradedCourse();
         }
         else{
-          courses_student_subsscribed_to = admin_.getCourses();
+          courses_student_subsscribed_to = admin_.getRegistradedCourse();
         }
 
         for (Course s_course : courses_student_subsscribed_to) {

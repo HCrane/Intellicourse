@@ -230,10 +230,10 @@ public class FManageLv extends JFrame {
     int index = jt_current_lvs_.getSelectedRow();
 
     if (student_ !=null) {
-      courses_student_subsscribed_to_ = new ArrayList<>(student_.getCourses());
+      courses_student_subsscribed_to_ = new ArrayList<>(student_.getRegistradedCourse());
     }
     else if (teacher_ != null) {
-      courses_student_subsscribed_to_ = new ArrayList<>(teacher_.getCourses());
+      courses_student_subsscribed_to_ = new ArrayList<>(teacher_.getRegistradedCourse());
       for (Course course : GetObjects.getAllCourses()) {
           if (course.getLecturer().getID() == teacher_.getID()) {
             //courses_student_subsscribed_to_.add(course);
@@ -241,7 +241,7 @@ public class FManageLv extends JFrame {
       }
     }
     else{
-      courses_student_subsscribed_to_ = new ArrayList<>(admin_.getCourses());
+      courses_student_subsscribed_to_ = new ArrayList<>(admin_.getRegistradedCourse());
       for (Course course : GetObjects.getAllCourses()) {
           if (course.getLecturer().getID() == admin_.getID()) {
             //courses_student_subsscribed_to_.add(course);

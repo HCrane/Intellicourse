@@ -361,13 +361,13 @@ public class FMainMenue extends JFrame
     List<Course> courses_student_subsscribed_to = new ArrayList<Course>();;
     List<UpcomingEventsElement> upcomming_events = new ArrayList<UpcomingEventsElement>();;
     if (student_ !=null) {
-      courses_student_subsscribed_to = new ArrayList<>(student_.getCourses());
+      courses_student_subsscribed_to = new ArrayList<>(student_.getRegistradedCourse());
     }
     else if (teacher_ != null) {
-      courses_student_subsscribed_to = new ArrayList<>(teacher_.getCourses());
+      courses_student_subsscribed_to = new ArrayList<>(teacher_.getRegistradedCourse());
     }
     else{
-      courses_student_subsscribed_to = new ArrayList<>(admin_.getCourses());
+      courses_student_subsscribed_to = new ArrayList<>(admin_.getRegistradedCourse());
     }
     jtm_upcoming_events_.setRowCount(0);
     Date now = new Date();
