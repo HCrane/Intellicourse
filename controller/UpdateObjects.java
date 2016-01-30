@@ -47,7 +47,7 @@ public class UpdateObjects
 
     if(lecturer != null)
     {
-      TeacherUser old_lecturer = course.getLecturer();
+      TeacherUser old_lecturer = (TeacherUser)course.getLecturer();
       course.setLecturer(lecturer);
       old_lecturer.removeTeachingCourse(course);
       lecturer.addTeachingCourse(course);

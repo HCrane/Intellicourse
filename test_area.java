@@ -13,7 +13,7 @@ public class test_area
   public static void main(String[] args)
   {
     HibernateSupport.init();
-    // createUsers();
+    createUsers();
     // createEvent();
     // createCourses();
     // createPlace();
@@ -28,7 +28,10 @@ public class test_area
     //checkRegisterUser();
     // loginchecker();
     //checkRegisterRoomAndCourse();
-    addTimeToHappening();
+    //addTimeToHappening();
+
+    autoChange();
+
     HibernateSupport.deinit();
     System.exit(0);
   }
@@ -111,60 +114,91 @@ public class test_area
     }
   }
 
-  // public static void createUsers()
-  // {
-  //   String fnameS = "abc";
-  //   String nnameS = "def";
-  //   String unameS = "coffee1";
-  //   String passwdS = "123";
-  //   String addrS = "trololol 234";
-  //   String mailS = "trolololol@rofl.lol";
-  //   String phoneS = "+06648607978";
-  //   StudentUser student = new StudentUser(unameS, fnameS, nnameS, passwdS, addrS, mailS, phoneS);
-  //
-  //   String fnameT = "abc";
-  //   String nnameT = "def";
-  //   String unameT = "coffee2";
-  //   String passwdT = "123";
-  //   String addrT = "trololol 234";
-  //   String mailT = "trolololol@rofl.lol";
-  //   String phoneT = "+06648607978";
-  //   TeacherUser teacher = new TeacherUser(unameT, fnameT, nnameT, passwdT, addrT, mailT, phoneT);
-  //
-  //   String fnameT2 = "abc";
-  //   String nnameT2 = "def";
-  //   String unameT2 = "coffee3";
-  //   String passwdT2 = "123";
-  //   String addrT2 = "trololol 234";
-  //   String mailT2 = "trolololol@rofl.lol";
-  //   String phoneT2 = "+06648607978";
-  //   TeacherUser teacher2 = new TeacherUser(unameT2, fnameT2, nnameT2, passwdT2, addrT2, mailT2, phoneT2);
-  //
-  //   String fnameA1 = "abc";
-  //   String nnameA1 = "def";
-  //   String unameA1 = "coffee4";
-  //   String passwdA1 = "123";
-  //   String addrA1 = "trololol 234";
-  //   String mailA1 = "trolololol@rofl.lol";
-  //   String phoneA1 = "+06648607978";
-  //   AdminUser admin1 = new AdminUser(unameA1, fnameA1, nnameA1, passwdA1, addrA1, mailA1, phoneA1);
-  //
-  //   try
-  //   {
-  //     HibernateSupport.beginTransaction();
-  //     HibernateSupport.commit(student);
-  //     HibernateSupport.commit(teacher);
-  //     HibernateSupport.commit(teacher2);
-  //     HibernateSupport.commit(admin1);
-  //     HibernateSupport.commitTransaction();
-  //   }
-  //   catch(HibernateException e)
-  //   {
-  //     System.out.println("Can't create the Users!");
-  //     System.out.println(e);
-  //     return;
-  //   }
-  // }
+  public static void autoChange()
+  {
+    try
+    {
+      List<Criterion> crit = new ArrayList<Criterion>();
+      crit.add(Restrictions.eq("user_name_", "coffee2"));
+
+      TeacherUser teacher = HibernateSupport.readOneObject(TeacherUser.class, crit);
+
+      AuthorizeHandler.userToAdmin(teacher);
+
+    }
+    catch(HibernateException e)
+    {
+    }
+  }
+
+  public static void createUsers()
+  {
+    String bd = "12.02.1235";
+    Date dob = null;
+
+    try
+    {
+      SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+      dob = sdf.parse(bd);
+    }
+    catch(ParseException e)
+    {
+      System.out.println("SHIIIT");
+    }
+
+
+    String fnameS = "abc";
+    String nnameS = "def";
+    String unameS = "coffee1";
+    String passwdS = "123";
+    String addrS = "trololol 234";
+    String mailS = "trolololol@rofl.lol";
+    String phoneS = "+06648607978";
+    StudentUser student = new StudentUser(unameS, fnameS, nnameS, passwdS, dob, addrS, mailS, phoneS);
+
+    String fnameT = "abc";
+    String nnameT = "def";
+    String unameT = "coffee2";
+    String passwdT = "123";
+    String addrT = "trololol 234";
+    String mailT = "trolololol@rofl.lol";
+    String phoneT = "+06648607978";
+    TeacherUser teacher = new TeacherUser(unameT, fnameT, nnameT, passwdT, dob, addrT, mailT, phoneT);
+
+    String fnameT2 = "abc";
+    String nnameT2 = "def";
+    String unameT2 = "coffee3";
+    String passwdT2 = "123";
+    String addrT2 = "trololol 234";
+    String mailT2 = "trolololol@rofl.lol";
+    String phoneT2 = "+06648607978";
+    TeacherUser teacher2 = new TeacherUser(unameT2, fnameT2, nnameT2, passwdT2, dob, addrT2, mailT2, phoneT2);
+
+    String fnameA1 = "abc";
+    String nnameA1 = "def";
+    String unameA1 = "coffee4";
+    String passwdA1 = "123";
+    String addrA1 = "trololol 234";
+    String mailA1 = "trolololol@rofl.lol";
+    String phoneA1 = "+06648607978";
+    AdminUser admin1 = new AdminUser(unameA1, fnameA1, nnameA1, passwdA1, dob, addrA1, mailA1, phoneA1);
+
+    try
+    {
+      HibernateSupport.beginTransaction();
+      HibernateSupport.commit(student);
+      HibernateSupport.commit(teacher);
+      HibernateSupport.commit(teacher2);
+      HibernateSupport.commit(admin1);
+      HibernateSupport.commitTransaction();
+    }
+    catch(HibernateException e)
+    {
+      System.out.println("Can't create the Users!");
+      System.out.println(e);
+      return;
+    }
+  }
   //
   // public static void createEvent()
   // {

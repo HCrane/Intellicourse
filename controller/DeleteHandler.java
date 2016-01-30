@@ -20,7 +20,7 @@ public class DeleteHandler
     if(check_course == null)
       return "Course not existing.";
 
-    TeacherUser teacher = course.getLecturer();
+    TeacherUser teacher = (TeacherUser)course.getLecturer();
     Set<StdUser> course_user_set = course.getRegistradedUser();
 
     teacher.removeTeachingCourse(course);
@@ -37,6 +37,7 @@ public class DeleteHandler
       {
         System.out.println("Can't update the User!");
         System.out.println(e);
+
         return "Can't update the User!";
       }
     }
@@ -55,6 +56,7 @@ public class DeleteHandler
       {
         System.out.println("Can't delete the Time!");
         System.out.println(e);
+
         return "Can't delete the Time!";
       }
     }

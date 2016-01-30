@@ -127,7 +127,7 @@ public class StdUser
 
 // GETTER SETTER LAST_NAME_
 //------------------------------------------------------------------------------
-    public final String getLasttName()
+    public final String getLastName()
     {
       return last_name_;
     }
@@ -197,8 +197,15 @@ public class StdUser
     }
 //------------------------------------------------------------------------------
 
-    public Set<Course> getCourses()
+// GETTER SETTER registraded_courses_
+//------------------------------------------------------------------------------
+    public final Set<Course> getRegistradedCourse()
     {
-        return registraded_courses_;
+      return registraded_courses_;
     }
+    public final void setRegistradedCoures(Set<Course> courses)
+    {
+      this.registraded_courses_ = courses;
+    }
+//------------------------------------------------------------------------------
 }
